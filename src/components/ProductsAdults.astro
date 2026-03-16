@@ -9,35 +9,40 @@ const products = [
     id: 1,
     name: 'PREMIUM\nΚΟΝΣΕΡΒΕΣ',
     href: '/proionta/konserves',
-    image: '/assets/images/products/konserves.png',
-    bgColor: '#C4B2A3',  /* tan/beige */
+    image: '/assets/images/product-img-01.webp',
+    bgImage: '/assets/images/product-card-01.webp',
+    bgColor: '#C4B2A3',
   },
   {
     id: 2,
     name: 'ΜΠΑΡΕΣ\nΠΡΩΤΕΪΝΗΣ',
     href: '/proionta/mpares',
-    image: '/assets/images/products/mpares.png',
-    bgColor: '#F0EDE8',  /* white/cream */
+    image: '/assets/images/product-img-02.webp',
+    bgImage: '/assets/images/product-card-02.webp',
+    bgColor: '#F0EDE8',
   },
   {
     id: 3,
     name: 'ΓΚΟΦΡΕΤΕΣ',
     href: '/proionta/gkofretes',
-    image: '/assets/images/products/gkofretes.png',
-    bgColor: '#859E66',  /* olive green */
+    image: '/assets/images/product-img-03.webp',
+    bgImage: '/assets/images/product-card-03.webp',
+    bgColor: '#859E66',
   },
   {
     id: 4,
     name: 'ΤΑΧΙΝΙ',
     href: '/proionta/taxini',
-    image: '/assets/images/products/taxini.png',
-    bgColor: '#C4B2A3',  /* beige */
+    image: '/assets/images/product-img-04.webp',
+    bgImage: '/assets/images/product-card-04.webp',
+    bgColor: '#C4B2A3',
   },
   {
     id: 5,
-    name: 'ΔΗΜΗΤΡΙΑΚΑ',
-    href: '/proionta/dhmhthriaka',
-    image: '/assets/images/products/dhmitrh.png',
+    name: 'ΝΙΦΑΔΕΣ\nΒΡΩΜΗΣ',
+    href: '/proionta/nifades',
+    image: '/assets/images/product-img-05.webp',
+    bgImage: '/assets/images/product-card-05.webp',
     bgColor: '#E8DDD0',
   },
 ];
@@ -47,11 +52,7 @@ const products = [
   <div class="container">
 
     <div class="products-adults__header">
-      <h2 id="adults-title" class="heading-section">ΠΡΟΪΟΝΤΑ ΓΙΑ ΕΝΗΛΙΚΕΣ</h2>
-      <p class="subtext-section" style="margin-top: 20px;">
-        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt
-        ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci.
-      </p>
+      <h2 id="adults-title" class="heading-section">ΠΡΟΪΟΝΤΑ ΓΙΑ ΕΝHΛΙΚΕΣ</h2>
     </div>
 
     <div class="products-adults__carousel-wrap">
@@ -62,7 +63,8 @@ const products = [
 
       <div class="products-adults__track" id="adults-track">
         {products.map((p) => (
-          <a href={p.href} class="product-oval" style={`--card-bg: ${p.bgColor}`}>
+          <a href={p.href} class="product-oval" style={`--card-bg: ${p.bgColor}; --card-bg-img: url('${p.bgImage}')`}>
+            <div class="product-oval__bg-img"></div>
             <div class="product-oval__img-wrap">
               <img src={p.image} alt={p.name.replace('\n', ' ')} loading="lazy" />
             </div>
@@ -82,7 +84,7 @@ const products = [
     </div>
 
     <div style="display:flex; justify-content:center; margin-top:50px;">
-      <a href="/proionta" class="btn btn-dark">ΟΛΑ ΤΑ ΠΡΟΪΟΝΤΑ</a>
+      <a href="/proionta" class="btn btn-dark">ΟΛΑ ΤΑ ΠΡΟΙΟΝΤΑ</a>
     </div>
   </div>
 </section>
@@ -140,6 +142,15 @@ const products = [
 .product-oval:hover {
   transform: translateY(-8px);
   box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+}
+
+.product-oval__bg-img {
+  position: absolute;
+  inset: 0;
+  background-image: var(--card-bg-img);
+  background-size: cover;
+  background-position: center;
+  border-radius: inherit;
 }
 
 .product-oval__img-wrap {

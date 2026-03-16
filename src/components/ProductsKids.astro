@@ -6,31 +6,28 @@
 
 const brands = [
   {
-    id: 'peppa',
-    name: 'Peppa Pig',
-    href: '/proionta/peppa-pig',
-    logo: '/assets/images/kids/peppa-pig-logo.png',
-    image: '/assets/images/kids/peppa-pig-products.png',
-    bgColor: '#F5A7C0',    /* pink */
-    ctaText: 'ΟΛΑ ΤΑ ΠΡΟΪΟΝΤΑ',
+    id: 'brand-1',
+    name: 'Παιδικά Προϊόντα 1',
+    href: '/proionta/paidia',
+    image: '/assets/images/kids-banner-01.webp',
+    bgColor: '#C4B2A3',
+    ctaText: 'ΟΛΑ ΤΑ ΠΡΟΙΟΝΤΑ',
   },
   {
-    id: 'pjmasks',
-    name: 'PJ Masks',
-    href: '/proionta/pj-masks',
-    logo: '/assets/images/kids/pj-masks-logo.png',
-    image: '/assets/images/kids/pj-masks-products.png',
-    bgColor: '#4A7A5A',    /* dark green */
-    ctaText: 'ΟΛΑ ΤΑ ΠΡΟΪΟΝΤΑ',
+    id: 'brand-2',
+    name: 'Παιδικά Προϊόντα 2',
+    href: '/proionta/paidia',
+    image: '/assets/images/kids-banner-02.webp',
+    bgColor: '#859E66',
+    ctaText: 'ΟΛΑ ΤΑ ΠΡΟΙΟΝΤΑ',
   },
   {
-    id: 'minions',
-    name: 'Minions',
-    href: '/proionta/minions',
-    logo: '/assets/images/kids/minions-logo.png',
-    image: '/assets/images/kids/minions-products.png',
-    bgColor: '#F5D547',    /* yellow */
-    ctaText: 'ΟΛΑ ΤΑ ΠΡΟΪΟΝΤΑ',
+    id: 'brand-3',
+    name: 'Παιδικά Προϊόντα 3',
+    href: '/proionta/paidia',
+    image: '/assets/images/kids-banner-03.webp',
+    bgColor: '#E8DDD0',
+    ctaText: 'ΟΛΑ ΤΑ ΠΡΟΙΟΝΤΑ',
   },
 ];
 ---
@@ -40,21 +37,12 @@ const brands = [
 
     <div class="products-kids__header">
       <h2 id="kids-title" class="heading-section">ΠΑΙΔΙΚΑ ΠΡΟΪΟΝΤΑ</h2>
-      <p class="subtext-section" style="margin-top: 20px;">
-        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt
-        ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci.
-      </p>
     </div>
 
     <div class="kids-cards">
       {brands.map((brand) => (
         <div class="kids-card" style={`--kids-bg: ${brand.bgColor}`}>
-          <!-- Brand logo -->
-          <div class="kids-card__logo-wrap">
-            <img src={brand.logo} alt={brand.name} class="kids-card__logo" loading="lazy" />
-          </div>
-
-          <!-- Floating product images -->
+          <!-- Full banner image -->
           <div class="kids-card__img-wrap">
             <img src={brand.image} alt={`${brand.name} προϊόντα`} class="kids-card__img" loading="lazy" />
           </div>

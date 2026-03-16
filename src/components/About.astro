@@ -14,13 +14,13 @@ const checklistItems = [
 ---
 
 <section class="about" aria-labelledby="about-title">
-  <!-- Background: dark oats image -->
-  <div class="about__bg" style="background-image: url('/assets/images/about/oats-bg.jpg')">
+  <div class="about__bg">
 
     <div class="container about__inner">
 
       <!-- White card (left) -->
       <div class="about__card">
+        <p class="about__label">ΣΧΕΤΙΚΑ ΜΕ ΕΜΑΣ</p>
         <h2 id="about-title" class="about__heading">
           Η NUTRI VALLEY ΔΗΜΙΟΥΡΓΕΙ ΠΡΟΪΟΝΤΑ
           ΠΟΥ ΚΑΝΟΥΝ ΤΗΝ ΚΑΘΗΜΕΡΙΝΗ ΔΙΑΤΡΟΦΗ
@@ -32,7 +32,8 @@ const checklistItems = [
           {checklistItems.map((item) => (
             <li class="about__checklist-item">
               <svg class="about__check" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                <path d="M4 10L8.5 14.5L16 6" stroke="#474444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="10" cy="10" r="9" stroke="#859E66" stroke-width="1.5"/>
+                <path d="M6 10L8.5 12.5L14 7.5" stroke="#859E66" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
               <span>{item}</span>
             </li>
@@ -42,12 +43,42 @@ const checklistItems = [
         <a href="/sxetika" class="btn btn-green about__cta">ΣΧΕΤΙΚΑ ΜΕ ΕΜΑΣ</a>
       </div>
 
-      <!-- Right: image fills remaining space (bg image does the work) -->
-      <div class="about__image-space" aria-hidden="true"></div>
+      <!-- Right: video with thumbnail + play button -->
+      <div class="about__video-wrap">
+        <video
+          class="about__video"
+          poster="/assets/images/about-video-thumb.webp"
+          controls
+          preload="none"
+          aria-label="Nutri Valley About Video"
+        >
+          <source src="/assets/images/nutri-valley-about.mp4" type="video/mp4" />
+        </video>
+        <button class="about__play-btn" aria-label="Παίξε βίντεο">
+          <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+            <circle cx="30" cy="30" r="30" fill="rgba(255,255,255,0.9)"/>
+            <path d="M24 20L44 30L24 40V20Z" fill="#474444"/>
+          </svg>
+        </button>
+      </div>
 
     </div>
   </div>
 </section>
+
+<script>
+  const playBtn = document.querySelector('.about__play-btn') as HTMLButtonElement;
+  const video = document.querySelector('.about__video') as HTMLVideoElement;
+
+  playBtn?.addEventListener('click', () => {
+    playBtn.style.display = 'none';
+    video?.play();
+  });
+
+  video?.addEventListener('pause', () => {
+    if (playBtn) playBtn.style.display = 'flex';
+  });
+</script>
 
 <style>
 .about {
@@ -55,9 +86,7 @@ const checklistItems = [
 }
 
 .about__bg {
-  background-size: cover;
-  background-position: center right;
-  background-color: #1A1512;   /* dark fallback */
+  background-color: #1A1512;
   min-height: 600px;
 }
 
@@ -118,7 +147,50 @@ const checklistItems = [
   align-self: flex-start;
 }
 
-.about__image-space {
+.about__label {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--green);
+}
+
+/* Video right side */
+.about__video-wrap {
   flex: 1;
+  position: relative;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius-card);
+  display: block;
+}
+
+.about__play-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, opacity 0.2s;
+  z-index: 2;
+}
+.about__play-btn:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+  opacity: 0.9;
 }
 </style>

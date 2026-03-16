@@ -6,27 +6,27 @@
 const recipes = [
   {
     id: 1,
-    title: 'Τηγανητό ρύζι με λαχανικά',
-    image: '/assets/images/recipes/recipe-1.jpg',
-    href: '/syntages/tighanito-ryzi',
+    title: 'Τηγανητό ρύζι με κοτόπουλο',
+    image: '/assets/images/recipe-img-01.webp',
+    href: '/syntages/tighanito-ryzi-kotopoulo',
   },
   {
     id: 2,
-    title: 'Granola με σοκολάτα',
-    image: '/assets/images/recipes/recipe-2.jpg',
-    href: '/syntages/granola-sokolata',
+    title: 'Brownies with a twist',
+    image: '/assets/images/recipe-img-02.webp',
+    href: '/syntages/brownies-twist',
   },
   {
     id: 3,
-    title: 'Ρυζογκοφρέτες με ταχίνι',
-    image: '/assets/images/recipes/recipe-3.jpg',
-    href: '/syntages/ryzogkofretes-taxini',
+    title: 'Ρυζογκοφρέτα με Cottage Cheese, Μέλι και Κανέλα',
+    image: '/assets/images/recipe-img-03.webp',
+    href: '/syntages/ryzogkofreta-cottage-cheese',
   },
   {
     id: 4,
-    title: 'Ζυμαρικά με κονσέρβα',
-    image: '/assets/images/recipes/recipe-4.jpg',
-    href: '/syntages/zymarika-konserva',
+    title: 'Πέστο κόκκινης πιπεριάς και κοτόπουλο',
+    image: '/assets/images/recipe-img-04.webp',
+    href: '/syntages/pesto-piperia-kotopoulo',
   },
 ];
 ---
@@ -36,10 +36,6 @@ const recipes = [
 
     <div class="recipes__header">
       <h2 id="recipes-title" class="heading-section">ΣΥΝΤΑΓΕΣ ΜΕ ΤΑ ΠΡΟΪΟΝΤΑ ΜΑΣ</h2>
-      <p class="subtext-section" style="margin-top: 20px;">
-        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt
-        ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci.
-      </p>
     </div>
 
     <div class="recipes__grid">
@@ -47,6 +43,9 @@ const recipes = [
         <a href={recipe.href} class="recipe-card">
           <div class="recipe-card__img-wrap">
             <img src={recipe.image} alt={recipe.title} loading="lazy" />
+          </div>
+          <div class="recipe-card__body">
+            <h3 class="recipe-card__title">{recipe.title}</h3>
           </div>
         </a>
       ))}
@@ -99,5 +98,18 @@ const recipes = [
 }
 .recipe-card:hover .recipe-card__img-wrap img {
   transform: scale(1.05);
+}
+
+.recipe-card__body {
+  padding: 20px 16px 16px;
+  background: var(--white);
+}
+
+.recipe-card__title {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--dark);
+  letter-spacing: 0.5px;
 }
 </style>
