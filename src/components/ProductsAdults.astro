@@ -1,0 +1,174 @@
+---
+/* ProductsAdults.astro — ΠΡΟΪΟΝΤΑ ΓΙΑ ΕΝΗΛΙΚΕΣ
+   Oval/pill product cards carousel
+   4 visible items: PREMIUM ΚΟΝΣΕΡΒΕΣ, ΜΠΑΡΕΣ ΠΡΩΤΕΪΝΗΣ, ΓΚΟΦΡΕΤΕΣ, ΤΑΧΙΝΙ
+*/
+
+const products = [
+  {
+    id: 1,
+    name: 'PREMIUM\nΚΟΝΣΕΡΒΕΣ',
+    href: '/proionta/konserves',
+    image: '/assets/images/products/konserves.png',
+    bgColor: '#C4B2A3',  /* tan/beige */
+  },
+  {
+    id: 2,
+    name: 'ΜΠΑΡΕΣ\nΠΡΩΤΕΪΝΗΣ',
+    href: '/proionta/mpares',
+    image: '/assets/images/products/mpares.png',
+    bgColor: '#F0EDE8',  /* white/cream */
+  },
+  {
+    id: 3,
+    name: 'ΓΚΟΦΡΕΤΕΣ',
+    href: '/proionta/gkofretes',
+    image: '/assets/images/products/gkofretes.png',
+    bgColor: '#859E66',  /* olive green */
+  },
+  {
+    id: 4,
+    name: 'ΤΑΧΙΝΙ',
+    href: '/proionta/taxini',
+    image: '/assets/images/products/taxini.png',
+    bgColor: '#C4B2A3',  /* beige */
+  },
+  {
+    id: 5,
+    name: 'ΔΗΜΗΤΡΙΑΚΑ',
+    href: '/proionta/dhmhthriaka',
+    image: '/assets/images/products/dhmitrh.png',
+    bgColor: '#E8DDD0',
+  },
+];
+---
+
+<section class="section products-adults" aria-labelledby="adults-title">
+  <div class="container">
+
+    <div class="products-adults__header">
+      <h2 id="adults-title" class="heading-section">ΠΡΟΪΟΝΤΑ ΓΙΑ ΕΝΗΛΙΚΕΣ</h2>
+      <p class="subtext-section" style="margin-top: 20px;">
+        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt
+        ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci.
+      </p>
+    </div>
+
+    <div class="products-adults__carousel-wrap">
+      <!-- Prev arrow -->
+      <button class="slider-arrow products-adults__arrow products-adults__arrow--prev" aria-label="Προηγούμενο">
+        <svg viewBox="0 0 20 20" fill="none"><path d="M13 4L7 10L13 16" stroke="#474444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+
+      <div class="products-adults__track" id="adults-track">
+        {products.map((p) => (
+          <a href={p.href} class="product-oval" style={`--card-bg: ${p.bgColor}`}>
+            <div class="product-oval__img-wrap">
+              <img src={p.image} alt={p.name.replace('\n', ' ')} loading="lazy" />
+            </div>
+            <span class="product-oval__name nav-link">
+              {p.name.split('\n').map((line, i) => (
+                <span key={i}>{line}<br /></span>
+              ))}
+            </span>
+          </a>
+        ))}
+      </div>
+
+      <!-- Next arrow -->
+      <button class="slider-arrow products-adults__arrow products-adults__arrow--next" aria-label="Επόμενο">
+        <svg viewBox="0 0 20 20" fill="none"><path d="M7 4L13 10L7 16" stroke="#474444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+
+    <div style="display:flex; justify-content:center; margin-top:50px;">
+      <a href="/proionta" class="btn btn-dark">ΟΛΑ ΤΑ ΠΡΟΪΟΝΤΑ</a>
+    </div>
+  </div>
+</section>
+
+<style>
+.products-adults {
+  background: #F7F5F2;
+}
+
+.products-adults__header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.products-adults__carousel-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.products-adults__track {
+  display: flex;
+  gap: 28px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  flex: 1;
+  padding: 20px 4px 30px;
+}
+.products-adults__track::-webkit-scrollbar { display: none; }
+
+.products-adults__arrow {
+  flex-shrink: 0;
+  z-index: 2;
+}
+
+/* Oval product card */
+.product-oval {
+  flex: 0 0 280px;
+  height: 460px;
+  border-radius: 140px;  /* creates the vertical oval/pill */
+  background: var(--card-bg, var(--beige));
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 40px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+.product-oval:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+}
+
+.product-oval__img-wrap {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 220px;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.product-oval__img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.15));
+}
+
+.product-oval__name {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 1.7px;
+  color: var(--dark);
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+</style>

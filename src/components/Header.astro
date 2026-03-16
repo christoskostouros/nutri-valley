@@ -1,0 +1,260 @@
+---
+/* Header.astro — Pixel-perfect from XD specs
+   Navbar height: ~170px total area
+   Search pill container: 1440×70px, border-radius 35px
+   Green ΠΡΟΪΟΝΤΑ btn: 200×70px, #859E66, border-radius 35px
+*/
+---
+
+<header class="header">
+  <div class="header__inner">
+
+    <!-- LEFT: ΠΡΟΪΟΝΤΑ green pill button -->
+    <button class="btn btn-green header__products-btn" aria-label="Προϊόντα menu">
+      <svg class="header__hamburger" width="20" height="14" viewBox="0 0 20 14" fill="none">
+        <rect width="20" height="2" rx="1" fill="currentColor"/>
+        <rect y="6" width="20" height="2" rx="1" fill="currentColor"/>
+        <rect y="12" width="20" height="2" rx="1" fill="currentColor"/>
+      </svg>
+      <span>ΠΡΟΪΟΝΤΑ</span>
+    </button>
+
+    <!-- CENTER: Logo -->
+    <a href="/" class="header__logo" aria-label="Nutri Valley - Αρχική">
+      <img src="/assets/images/logo.svg" alt="Nutri Valley" width="200" height="58" />
+    </a>
+
+    <!-- NAV LINKS inside pill container -->
+    <div class="header__nav-pill">
+      <nav class="header__nav" aria-label="Main navigation">
+        <a href="/syntages" class="nav-link">ΣΥΝΤΑΓΕΣ</a>
+        <a href="/diagwnismoi" class="nav-link">ΔΙΑΓΩΝΙΣΜΟΙ</a>
+        <a href="/events" class="nav-link">EVENTS</a>
+        <a href="/blog" class="nav-link">BLOG</a>
+        <a href="/sxetika" class="nav-link">ΣΧΕΤΙΚΑ</a>
+        <a href="/epikoinwnia" class="nav-link">ΕΠΙΚΟΙΝΩΝΙΑ</a>
+      </nav>
+
+      <!-- RIGHT ICONS inside pill -->
+      <div class="header__icons">
+        <button class="header__icon-btn" aria-label="Αλλαγή γλώσσας">
+          <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+            <circle cx="13" cy="13" r="11.5" stroke="#474444" stroke-width="1.5"/>
+            <ellipse cx="13" cy="13" rx="5.5" ry="11.5" stroke="#474444" stroke-width="1.5"/>
+            <line x1="2" y1="9.5" x2="24" y2="9.5" stroke="#474444" stroke-width="1.5"/>
+            <line x1="2" y1="16.5" x2="24" y2="16.5" stroke="#474444" stroke-width="1.5"/>
+          </svg>
+        </button>
+        <button class="header__icon-btn" aria-label="Αναζήτηση">
+          <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+            <circle cx="11" cy="11" r="8.5" stroke="#474444" stroke-width="1.5"/>
+            <line x1="17.5" y1="17.5" x2="24" y2="24" stroke="#474444" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+  </div>
+</header>
+
+<!-- MEGA MENU (Menu-Desktop-1 / Menu-Desktop-2) — hidden by default -->
+<div class="mega-menu" id="mega-menu" aria-hidden="true">
+  <div class="mega-menu__inner">
+    <!-- Product categories row -->
+    <div class="mega-menu__grid">
+      <a href="/proionta/konserves" class="mega-menu__item">
+        <div class="mega-menu__img-wrap">
+          <img src="/assets/images/menu/konserves-thumb.jpg" alt="Κονσέρβες" />
+        </div>
+        <span>PREMIUM ΚΟΝΣΕΡΒΕΣ</span>
+      </a>
+      <a href="/proionta/mpares" class="mega-menu__item">
+        <div class="mega-menu__img-wrap">
+          <img src="/assets/images/menu/mpares-thumb.jpg" alt="Μπάρες Πρωτεΐνης" />
+        </div>
+        <span>ΜΠΑΡΕΣ ΠΡΩΤΕΪΝΗΣ</span>
+      </a>
+      <a href="/proionta/gkofretes" class="mega-menu__item">
+        <div class="mega-menu__img-wrap">
+          <img src="/assets/images/menu/gkofretes-thumb.jpg" alt="Γκοφρέτες" />
+        </div>
+        <span>ΓΚΟΦΡΕΤΕΣ</span>
+      </a>
+      <a href="/proionta/taxini" class="mega-menu__item">
+        <div class="mega-menu__img-wrap">
+          <img src="/assets/images/menu/taxini-thumb.jpg" alt="Ταχίνι" />
+        </div>
+        <span>ΤΑΧΙΝΙ</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<style>
+/* ===== HEADER ===== */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--white);
+  width: 100%;
+  padding: 50px 50px;          /* matches XD: btn top:50px left:50px */
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  width: 100%;
+  max-width: 1820px;
+  margin: 0 auto;
+}
+
+/* Green ΠΡΟΪΟΝΤΑ button */
+.header__products-btn {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 17px;
+  letter-spacing: 1.7px;
+  padding: 0 24px;
+}
+.header__hamburger { flex-shrink: 0; }
+
+/* Logo */
+.header__logo {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+.header__logo img {
+  height: 58px;
+  width: auto;
+}
+
+/* Pill nav container — 1440×70px from XD */
+.header__nav-pill {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+  background: var(--white);
+  border-radius: var(--radius-pill);
+  border: 1.5px solid var(--light);
+  padding: 0 28px;
+  gap: 20px;
+}
+
+.header__nav {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+}
+
+.header__nav .nav-link {
+  transition: color 0.2s;
+}
+.header__nav .nav-link:hover { color: var(--green); }
+
+.header__icons {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.header__icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+.header__icon-btn:hover { background: var(--light); }
+
+/* ===== MEGA MENU ===== */
+.mega-menu {
+  position: fixed;
+  top: 170px;
+  left: 0;
+  width: 100%;
+  background: var(--white);
+  border-top: 2px solid var(--light);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+  z-index: 99;
+  transform: translateY(-10px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.mega-menu.is-open {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.mega-menu__inner {
+  max-width: 1820px;
+  margin: 0 auto;
+  padding: 40px 50px;
+}
+
+.mega-menu__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
+}
+
+.mega-menu__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--dark);
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.mega-menu__item:hover { color: var(--green); }
+
+.mega-menu__img-wrap {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--light);
+}
+.mega-menu__img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+</style>
+
+<script>
+/* Toggle mega menu on ΠΡΟΪΟΝΤΑ button click */
+const btn = document.querySelector('.header__products-btn');
+const menu = document.getElementById('mega-menu');
+
+btn?.addEventListener('click', () => {
+  const isOpen = menu?.classList.contains('is-open');
+  menu?.classList.toggle('is-open', !isOpen);
+  menu?.setAttribute('aria-hidden', isOpen ? 'true' : 'false');
+});
+
+/* Close on outside click */
+document.addEventListener('click', (e) => {
+  if (!btn?.contains(e.target as Node) && !menu?.contains(e.target as Node)) {
+    menu?.classList.remove('is-open');
+    menu?.setAttribute('aria-hidden', 'true');
+  }
+});
+</script>

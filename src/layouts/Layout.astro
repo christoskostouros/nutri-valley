@@ -1,0 +1,244 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Nutri Valley - Moments of Delight',
+  description = 'Θρεπτικές επιλογές σχεδιασμένες για τον σύγχρονο τρόπο ζωής.',
+} = Astro.props;
+---
+<!doctype html>
+<html lang="el">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+/* =========================================
+   NUTRI VALLEY — Global Styles
+   Design: 1920px wide, TikTok Sans font
+   ========================================= */
+
+@font-face {
+  font-family: 'TikTokSans';
+  src: url('/assets/fonts/TikTokSans-Bold.woff2') format('woff2'),
+       url('/assets/fonts/TikTokSans-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'TikTokSans';
+  src: url('/assets/fonts/TikTokSans-Regular.woff2') format('woff2'),
+       url('/assets/fonts/TikTokSans-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---- Design Tokens ---- */
+:root {
+  --green:       #859E66;
+  --dark:        #474444;
+  --beige:       #C4B2A3;
+  --light:       #E8E8E8;
+  --yellow:      #F9F3AF;
+  --white:       #FFFFFF;
+  --off-white:   #FDFFFD;
+
+  --font:        'TikTokSans', system-ui, -apple-system, sans-serif;
+
+  --radius-pill: 35px;
+  --radius-card: 20px;
+  --radius-hero: 24px;
+
+  --max-width:   1920px;
+  --container:   1820px;
+  --side-margin: 50px;
+
+  --btn-h:       70px;
+  --btn-green-w: 200px;
+  --btn-dark-w:  300px;
+
+  --section-pt:  80px;
+  --section-pb:  80px;
+}
+
+/* ---- Reset ---- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font);
+  color: var(--dark);
+  background: var(--white);
+  overflow-x: hidden;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+img { display: block; max-width: 100%; }
+a   { text-decoration: none; color: inherit; }
+address { font-style: normal; }
+
+/* ---- Typography ---- */
+.heading-hero {
+  font-size: 42.09px;
+  font-weight: 700;
+  line-height: 60px;
+  letter-spacing: 2.1px;
+  color: var(--dark);
+  text-transform: uppercase;
+}
+
+.heading-section {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 1.5px;
+  color: var(--dark);
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.subtext-section {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--dark);
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.nav-link {
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 1.7px;
+  line-height: 20.4px;
+  color: var(--dark);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* ---- Buttons ---- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--btn-h);
+  border-radius: var(--radius-pill);
+  font-family: var(--font);
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 1.7px;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  transition: opacity 0.2s ease, transform 0.15s ease;
+  white-space: nowrap;
+}
+.btn:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+
+.btn-green {
+  width: var(--btn-green-w);
+  background: var(--green);
+  color: var(--off-white);
+}
+
+.btn-dark {
+  width: var(--btn-dark-w);
+  background: var(--dark);
+  color: var(--white);
+}
+
+.btn-outline-dark {
+  min-width: 220px;
+  padding: 0 36px;
+  background: transparent;
+  color: var(--dark);
+  border: 2px solid var(--dark);
+}
+
+.btn-outline-white {
+  min-width: 220px;
+  padding: 0 36px;
+  background: transparent;
+  color: var(--white);
+  border: 2px solid var(--white);
+}
+
+.btn-white-pill {
+  min-width: 200px;
+  padding: 0 32px;
+  background: var(--white);
+  color: var(--dark);
+  border: none;
+  height: 54px;
+  border-radius: 27px;
+}
+
+/* ---- Container ---- */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--side-margin);
+}
+
+.section {
+  padding: var(--section-pt) 0 var(--section-pb);
+}
+
+/* ---- Slider Arrows ---- */
+.slider-arrow {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(71,68,68,0.12);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+.slider-arrow:hover { background: rgba(71,68,68,0.25); }
+.slider-arrow svg { width: 20px; height: 20px; }
+
+/* ---- Skip link (accessibility) ---- */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--green);
+  color: var(--white);
+  padding: 8px 16px;
+  z-index: 9999;
+  border-radius: 0 0 8px 0;
+  transition: top 0.2s;
+}
+.skip-link:focus { top: 0; }
+</style>

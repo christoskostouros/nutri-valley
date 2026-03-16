@@ -1,0 +1,108 @@
+---
+/* Blog.astro — 2 blog post cards side by side
+   Image top + white card bottom with title + excerpt
+*/
+
+const posts = [
+  {
+    id: 1,
+    title: 'ΓΙΑΤΙ ΝΑ ΕΠΙΛΕΞΕΤΕ ΤΟ ΦΙΛΕΤΟ ΚΟΤΟΠΟΥΛΟ ΤΗΣ NUTRI VALLEY',
+    excerpt: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna erat volutpat. Ut wisi enim ad minim veniam, euismod quis notrud exerci.',
+    image: '/assets/images/blog/blog-1.jpg',
+    href: '/blog/fileto-kotopoulo',
+    category: 'ΠΟΙΟΤΗΤΑ',
+  },
+  {
+    id: 2,
+    title: 'ΒΙΩΣΙΜΟΤΗΤΑ ΤΗΣ NUTRI VALLEY',
+    excerpt: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna erat volutpat. Ut wisi enim ad minim veniam, euismod quis notrud exerci.',
+    image: '/assets/images/blog/blog-2.jpg',
+    href: '/blog/biwsimothta',
+    category: 'ΒΙΩΣΙΜΟΤΗΤΑ',
+  },
+];
+---
+
+<section class="section blog" aria-labelledby="blog-title">
+  <div class="container">
+
+    <div class="blog__grid">
+      {posts.map((post) => (
+        <article class="blog-card">
+          <a href={post.href} class="blog-card__img-link">
+            <div class="blog-card__img-wrap">
+              <img src={post.image} alt={post.title} loading="lazy" />
+            </div>
+          </a>
+          <div class="blog-card__body">
+            <h3 class="blog-card__title">
+              <a href={post.href}>{post.title}</a>
+            </h3>
+            <p class="blog-card__excerpt">{post.excerpt}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+.blog {
+  background: var(--white);
+}
+
+.blog__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+}
+
+.blog-card {
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  background: var(--white);
+  box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+  transition: box-shadow 0.3s;
+}
+.blog-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.12); }
+
+.blog-card__img-link { display: block; }
+.blog-card__img-wrap {
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  background: var(--light);
+}
+.blog-card__img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s;
+}
+.blog-card:hover .blog-card__img-wrap img { transform: scale(1.04); }
+
+.blog-card__body {
+  padding: 32px 36px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.blog-card__title {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  line-height: 1.5;
+  text-transform: uppercase;
+  color: var(--dark);
+}
+.blog-card__title a { transition: color 0.2s; }
+.blog-card__title a:hover { color: var(--green); }
+
+.blog-card__excerpt {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--dark);
+  opacity: 0.8;
+}
+</style>

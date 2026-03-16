@@ -1,0 +1,127 @@
+---
+/* Events.astro — Η NUTRI VALLEY ΤΑΞΙΔΕΥΕΙ ΠΑΝΤΟΥ
+   Beige paper-texture background
+   Text left + stacked event photos right
+   White outline button "ΟΛΑ ΤΑ EVENTS"
+*/
+---
+
+<section class="events" aria-labelledby="events-title">
+  <div class="events__bg" style="background-image: url('/assets/images/events/events-texture-bg.jpg')">
+    <div class="container events__inner">
+
+      <!-- LEFT: text content -->
+      <div class="events__content">
+        <h2 id="events-title" class="events__heading">
+          Η NUTRI VALLEY ΤΑΞΙΔΕΥΕΙ ΠΑΝΤΟΥ.<br/>
+          ΕΛΑΤΕ ΝΑ ΓΝΩΡΙΣΤΟΥΜΕ ΣΕ<br/>
+          ΚΑΠΟΙΟ EVENT ΜΑΣ!
+        </h2>
+        <p class="events__subtext">
+          Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
+          nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+          Ut wisi enim ad minim veniam, euismod quis notrud exerci tation ulorper
+          suscipit lobortis nisl ut aliquip.
+        </p>
+        <a href="/events" class="btn btn-outline-dark events__cta">ΟΛΑ ΤΑ EVENTS</a>
+      </div>
+
+      <!-- RIGHT: stacked event photos -->
+      <div class="events__photos" aria-hidden="true">
+        <div class="events__photo events__photo--back">
+          <img src="/assets/images/events/event-photo-2.jpg" alt="" loading="lazy" />
+        </div>
+        <div class="events__photo events__photo--front">
+          <img src="/assets/images/events/event-photo-1.jpg" alt="Nutri Valley event" loading="lazy" />
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+.events {
+  width: 100%;
+}
+
+.events__bg {
+  background-size: cover;
+  background-position: center;
+  background-color: var(--beige);
+  min-height: 560px;
+}
+
+.events__inner {
+  display: flex;
+  align-items: center;
+  gap: 80px;
+  min-height: 560px;
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.events__content {
+  flex: 0 0 560px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.events__heading {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: 1.5px;
+  color: var(--dark);
+  text-transform: uppercase;
+}
+
+.events__subtext {
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--dark);
+  max-width: 480px;
+}
+
+.events__cta {
+  align-self: flex-start;
+}
+
+/* Stacked photos */
+.events__photos {
+  flex: 1;
+  position: relative;
+  height: 420px;
+}
+
+.events__photo {
+  position: absolute;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+}
+.events__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.events__photo--back {
+  width: 340px;
+  height: 300px;
+  top: 20px;
+  right: 40px;
+  transform: rotate(3deg);
+  background: var(--light);
+}
+
+.events__photo--front {
+  width: 320px;
+  height: 360px;
+  bottom: 0;
+  right: 10px;
+  transform: rotate(-2deg);
+  background: var(--light);
+}
+</style>

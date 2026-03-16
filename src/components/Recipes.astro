@@ -1,0 +1,103 @@
+---
+/* Recipes.astro — ΣΥΝΤΑΓΕΣ ΜΕ ΤΑ ΠΡΟΪΟΝΤΑ ΜΑΣ
+   Light gray bg, 4 recipe photos (rounded ~20px), dark CTA
+*/
+
+const recipes = [
+  {
+    id: 1,
+    title: 'Τηγανητό ρύζι με λαχανικά',
+    image: '/assets/images/recipes/recipe-1.jpg',
+    href: '/syntages/tighanito-ryzi',
+  },
+  {
+    id: 2,
+    title: 'Granola με σοκολάτα',
+    image: '/assets/images/recipes/recipe-2.jpg',
+    href: '/syntages/granola-sokolata',
+  },
+  {
+    id: 3,
+    title: 'Ρυζογκοφρέτες με ταχίνι',
+    image: '/assets/images/recipes/recipe-3.jpg',
+    href: '/syntages/ryzogkofretes-taxini',
+  },
+  {
+    id: 4,
+    title: 'Ζυμαρικά με κονσέρβα',
+    image: '/assets/images/recipes/recipe-4.jpg',
+    href: '/syntages/zymarika-konserva',
+  },
+];
+---
+
+<section class="section recipes" aria-labelledby="recipes-title">
+  <div class="container">
+
+    <div class="recipes__header">
+      <h2 id="recipes-title" class="heading-section">ΣΥΝΤΑΓΕΣ ΜΕ ΤΑ ΠΡΟΪΟΝΤΑ ΜΑΣ</h2>
+      <p class="subtext-section" style="margin-top: 20px;">
+        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt
+        ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci.
+      </p>
+    </div>
+
+    <div class="recipes__grid">
+      {recipes.map((recipe) => (
+        <a href={recipe.href} class="recipe-card">
+          <div class="recipe-card__img-wrap">
+            <img src={recipe.image} alt={recipe.title} loading="lazy" />
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <div style="display:flex; justify-content:center; margin-top:50px;">
+      <a href="/syntages" class="btn btn-dark">ΟΛΕΣ ΟΙ ΣΥΝΤΑΓΕΣ</a>
+    </div>
+
+  </div>
+</section>
+
+<style>
+.recipes {
+  background: #F7F5F2;
+}
+
+.recipes__header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.recipes__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.recipe-card {
+  display: block;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.recipe-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+}
+
+.recipe-card__img-wrap {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: var(--light);
+}
+.recipe-card__img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.recipe-card:hover .recipe-card__img-wrap img {
+  transform: scale(1.05);
+}
+</style>

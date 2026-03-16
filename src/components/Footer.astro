@@ -1,0 +1,183 @@
+---
+/* Footer.astro — from XD specs
+   Top area: Logo + 3 columns (contact, links)
+   Bottom bar: © + Powered by Thinktank + social links
+*/
+---
+
+<footer class="footer">
+  <div class="footer__top">
+    <div class="container footer__inner">
+
+      <!-- Logo -->
+      <div class="footer__brand">
+        <a href="/" aria-label="Nutri Valley - Αρχική">
+          <img src="/assets/images/logo.svg" alt="Nutri Valley" width="180" height="52" />
+        </a>
+      </div>
+
+      <!-- Contact info -->
+      <div class="footer__col">
+        <ul class="footer__contact-list">
+          <li class="footer__contact-item">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M3 5C3 4.44772 3.44772 4 4 4H7.27924C7.47329 4 7.6488 4.12015 7.72412 4.30039L9.22412 7.80039C9.30988 8.01394 9.25935 8.25462 9.10557 8.40825L7.60557 9.90825C8.48613 11.6729 9.82711 13.0139 11.5918 13.8944L13.0918 12.3944C13.2454 12.2407 13.4861 12.1901 13.6996 12.2759L17.1996 13.7759C17.3799 13.8512 17.5 14.0267 17.5 14.2208V17.5C17.5 18.0523 17.0523 18.5 16.5 18.5H16C8.82029 18.5 3 12.6797 3 5.5V5Z" stroke="#474444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <a href="tel:+302120001022">+30 212 000 1022</a>
+          </li>
+          <li class="footer__contact-item">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M2.5 6.5L10 11L17.5 6.5M3 5H17C17.5523 5 18 5.44772 18 6V14C18 14.5523 17.5523 15 17 15H3C2.44772 15 2 14.5523 2 14V6C2 5.44772 2.44772 5 3 5Z" stroke="#474444" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <a href="mailto:info@nutrivalley.gr">info@nutrivalley.gr</a>
+          </li>
+          <li class="footer__contact-item">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M10 2C7.23858 2 5 4.23858 5 7C5 10.75 10 18 10 18C10 18 15 10.75 15 7C15 4.23858 12.7614 2 10 2Z" stroke="#474444" stroke-width="1.5"/>
+              <circle cx="10" cy="7" r="2" stroke="#474444" stroke-width="1.5"/>
+            </svg>
+            <address class="footer__address">Ικαρίας 16, Κηφισιά, ΤΚ 14562</address>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Legal links -->
+      <div class="footer__col">
+        <nav aria-label="Legal links">
+          <ul class="footer__links">
+            <li><a href="/oroi-xrhshs" class="footer__link">Όροι Χρήσης</a></li>
+            <li><a href="/politikh-aporrihtou" class="footer__link">Πολιτική Απορρήτου</a></li>
+            <li><a href="/politikh-cookies" class="footer__link">Πολιτική Cookies</a></li>
+          </ul>
+        </nav>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Bottom bar -->
+  <div class="footer__bottom">
+    <div class="container footer__bottom-inner">
+      <span class="footer__copy">© Nutri Valley 2025. All Rights Reserved</span>
+
+      <span class="footer__powered">
+        Powered by <a href="https://thinktank.gr" target="_blank" rel="noopener">Thinktank</a>
+      </span>
+
+      <nav class="footer__social" aria-label="Social media links">
+        <a href="https://facebook.com/nutrivalley" target="_blank" rel="noopener" class="footer__social-link">Facebook</a>
+        <a href="https://instagram.com/nutrivalley" target="_blank" rel="noopener" class="footer__social-link">Instagram</a>
+        <a href="https://facebook.com/nutrivalleykids" target="_blank" rel="noopener" class="footer__social-link footer__social-link--kids">Facebook Kids</a>
+        <a href="https://instagram.com/nutrivalleykids" target="_blank" rel="noopener" class="footer__social-link footer__social-link--kids">Instagram Kids</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<style>
+/* ===== FOOTER ===== */
+.footer {
+  background: var(--white);
+  border-top: 1.5px solid var(--light);
+  width: 100%;
+}
+
+/* Top area */
+.footer__top {
+  padding: 60px 0 50px;
+}
+
+.footer__inner {
+  display: flex;
+  align-items: flex-start;
+  gap: 80px;
+}
+
+.footer__brand {
+  flex-shrink: 0;
+}
+.footer__brand img { height: 52px; width: auto; }
+
+/* Contact list */
+.footer__col { flex: 1; }
+
+.footer__contact-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.footer__contact-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 16px;
+  color: var(--dark);
+}
+.footer__contact-item a,
+.footer__contact-item address {
+  font-size: 16px;
+  color: var(--dark);
+  font-style: normal;
+  transition: color 0.2s;
+}
+.footer__contact-item a:hover { color: var(--green); }
+
+/* Legal links */
+.footer__links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.footer__link {
+  font-size: 16px;
+  color: var(--dark);
+  transition: color 0.2s;
+}
+.footer__link:hover { color: var(--green); }
+
+/* Bottom bar */
+.footer__bottom {
+  border-top: 1px solid var(--light);
+  padding: 22px 0;
+}
+
+.footer__bottom-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.footer__copy,
+.footer__powered {
+  font-size: 14px;
+  color: var(--dark);
+  opacity: 0.7;
+}
+.footer__powered a { color: var(--dark); transition: color 0.2s; }
+.footer__powered a:hover { color: var(--green); }
+
+.footer__social {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.footer__social-link {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--dark);
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.footer__social-link:hover { color: var(--green); }
+
+.footer__social-link--kids { color: var(--green); }
+.footer__social-link--kids:hover { opacity: 0.75; }
+</style>
