@@ -20,6 +20,25 @@ const {
   </head>
   <body>
     <slot />
+    <script>
+      // Scale the 1920px design to fit any viewport width
+      function scaleBody() {
+        const vw = window.innerWidth;
+        if (vw < 1920) {
+          const scale = vw / 1920;
+          document.body.style.transform = `scale(${scale})`;
+          // Adjust the visible height so no extra whitespace below
+          document.documentElement.style.height = `${document.body.scrollHeight * scale}px`;
+        } else {
+          document.body.style.transform = 'none';
+          document.documentElement.style.height = '';
+        }
+      }
+      scaleBody();
+      window.addEventListener('resize', scaleBody);
+      // Re-check after all content loads (images etc.)
+      window.addEventListener('load', scaleBody);
+    </script>
   </body>
 </html>
 
@@ -90,9 +109,13 @@ body {
   font-family: var(--font);
   color: var(--dark);
   background: var(--white);
+  width: 1920px;
+  margin: 0;
+  transform-origin: top left;
+}
+
+html {
   overflow-x: hidden;
-  max-width: var(--max-width);
-  margin: 0 auto;
 }
 
 img { display: block; max-width: 100%; }
