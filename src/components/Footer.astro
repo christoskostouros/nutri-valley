@@ -79,18 +79,22 @@
   border-radius: 30px;
   display: flex;
   flex-direction: row;
-  gap: 167px;
+  gap: clamp(20px, 8.7%, 167px);
   height: 400px;
-  min-width: 1820px;
-  padding: 27.5px 30px;
+  max-width: 1820px;
+  width: 100%;
+  padding: 27.5px clamp(20px, 2%, 30px);
+  flex-wrap: wrap;
 }
 
 /* LEFT COLUMN: Logo + Copyright */
 .footer-left {
-  width: 276px;
+  min-width: 200px;
+  max-width: 276px;
+  flex: 0 1 auto;
   display: flex;
   flex-direction: column;
-  gap: 259px;
+  gap: clamp(20px, 20%, 259px);
 }
 
 .footer-logo {
@@ -115,10 +119,11 @@
 
 /* RIGHT COLUMN: Contact + Legal + Powered + Social */
 .footer-right {
-  width: 1295px;
+  flex: 1;
+  min-width: 200px;
   display: flex;
   flex-direction: column;
-  gap: 171px;
+  gap: clamp(20px, 12%, 171px);
 }
 
 /* Top row: Icons + Contact + Legal */

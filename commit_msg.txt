@@ -1,0 +1,6 @@
+Pixel-perfect rewrite of all components from XD/Anima specs + responsive design 
+ 
+Rewrote Header, Hero, ProductsAdults, ProductsKids, About, Recipes, 
+Events, Blog, Footer to match exact XD pixel values. Added mega menu 
+with both adult thumbnails and kids text list. Added responsive 
+breakpoints for 1440px, 1024px, 768px, and 480px viewports. 
