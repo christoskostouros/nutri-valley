@@ -1,106 +1,125 @@
 ---
-/* Blog.astro — 2 blog post cards side by side
-   Image top + white card bottom with title + excerpt
+/* Blog.astro — XD spec: 2 blog post cards (885px × 750px)
+   Image (740px height) + overlapping white text bar (180px, top: 570px)
+   Cards in flex container: gap 50px, min-width 1820px
 */
 
 const posts = [
   {
     id: 1,
     title: 'ΓΙΑΤΙ ΝΑ ΕΠΙΛΕΞΕΤΕ ΤΟ ΦΙΛΕΤΟ ΚΟΤΟΠΟΥΛΟ ΤΗΣ NUTRI VALLEY',
-    excerpt: 'Ανακαλύψτε γιατί το φιλέτο κοτόπουλου Nutri Valley είναι η ιδανική επιλογή για υγιεινή και νόστιμη διατροφή.',
+    excerpt: 'Ανακαλύψτε γιατί το φιλέτο κοτόπουλου Nutri Valley...',
     image: '/assets/images/blog-post-01.webp',
     href: '/blog/fileto-kotopoulo',
   },
   {
     id: 2,
     title: 'ΒΙΩΣΙΜΟΤΗΤΑ ΤΗΣ NUTRI VALLEY',
-    excerpt: 'Η Nutri Valley δεσμεύεται για ένα βιώσιμο μέλλον. Μάθετε για τις πρωτοβουλίες μας για το περιβάλλον και την κοινωνία.',
+    excerpt: 'Η Nutri Valley δεσμεύεται για ένα βιώσιμο μέλλον...',
     image: '/assets/images/blog-post-02.webp',
     href: '/blog/biwsimothta',
   },
 ];
 ---
 
-<section class="section blog" aria-labelledby="blog-title">
-  <div class="container">
+<section class="blog">
+  <div class="blog__cards-container">
+    {posts.map((post) => (
+      <article class="blog-card">
+        {/* Background image: 885px × 740px */}
+        <div class="blog-card__image">
+          <img src={post.image} alt={post.title} loading="lazy" />
+        </div>
 
-    <div class="blog__grid">
-      {posts.map((post) => (
-        <article class="blog-card">
-          <a href={post.href} class="blog-card__img-link">
-            <div class="blog-card__img-wrap">
-              <img src={post.image} alt={post.title} loading="lazy" />
-            </div>
-          </a>
-          <div class="blog-card__body">
-            <h3 class="blog-card__title">
-              <a href={post.href}>{post.title}</a>
-            </h3>
+        {/* White overlay bar: 885px × 180px, positioned at top: 570px */}
+        <div class="blog-card__text-bar">
+          <div class="blog-card__text-content">
+            <h3 class="blog-card__title">{post.title}</h3>
             {post.excerpt && <p class="blog-card__excerpt">{post.excerpt}</p>}
           </div>
-        </article>
-      ))}
-    </div>
-
+        </div>
+      </article>
+    ))}
   </div>
 </section>
 
 <style>
 .blog {
-  background: var(--white);
+  background: #e8e8e8;
+  padding: 0;
 }
 
-.blog__grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 28px;
+.blog__cards-container {
+  display: flex;
+  gap: 50px;
+  min-width: 1820px;
+  margin-top: 50px;
+  padding-left: 50px;
+  padding-right: 50px;
 }
 
 .blog-card {
-  border-radius: var(--radius-card);
-  overflow: hidden;
-  background: var(--white);
-  box-shadow: 0 2px 16px rgba(0,0,0,0.06);
-  transition: box-shadow 0.3s;
+  position: relative;
+  width: 885px;
+  height: 750px;
+  flex-shrink: 0;
 }
-.blog-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.12); }
 
-.blog-card__img-link { display: block; }
-.blog-card__img-wrap {
-  aspect-ratio: 16/9;
+.blog-card__image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 885px;
+  height: 740px;
   overflow: hidden;
-  background: var(--light);
 }
-.blog-card__img-wrap img {
+
+.blog-card__image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.4s;
+  display: block;
 }
-.blog-card:hover .blog-card__img-wrap img { transform: scale(1.04); }
 
-.blog-card__body {
-  padding: 32px 36px 40px;
+.blog-card__text-bar {
+  position: absolute;
+  top: 570px;
+  left: 0;
+  width: 885px;
+  height: 180px;
+  background: white;
+}
+
+.blog-card__text-content {
+  position: absolute;
+  left: 39px;
+  bottom: calc(41.77% - 44px);
+  width: calc(100% - 79px);
+  height: 106px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 8px;
 }
 
 .blog-card__title {
-  font-size: 18px;
+  font-size: 21px;
   font-weight: 700;
-  letter-spacing: 1.2px;
-  line-height: 1.5;
-  text-transform: uppercase;
-  color: var(--dark);
+  letter-spacing: 1.05px;
+  line-height: 32px;
+  height: auto;
+  color: #000;
+  margin: 0;
+  padding: 0;
 }
-.blog-card__title a { transition: color 0.2s; }
-.blog-card__title a:hover { color: var(--green); }
 
 .blog-card__excerpt {
-  font-size: 15px;
-  line-height: 1.7;
-  color: var(--dark);
-  opacity: 0.8;
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: 0.09px;
+  line-height: 25px;
+  height: auto;
+  color: #000;
+  margin: 0;
+  padding: 0;
 }
 </style>

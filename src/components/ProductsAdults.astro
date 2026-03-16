@@ -1,11 +1,10 @@
 ---
 /* ProductsAdults.astro — ΠΡΟΪΟΝΤΑ ΓΙΑ ΕΝΗΛΙΚΕΣ
-   Oval/pill product cards carousel
-   4 visible items: PREMIUM ΚΟΝΣΕΡΒΕΣ, ΜΠΑΡΕΣ ΠΡΩΤΕΪΝΗΣ, ΓΚΟΦΡΕΤΕΣ, ΤΑΧΙΝΙ
+   Oval/pill product cards carousel (362px × 600px each)
+   Horizontal scrolling carousel with 5 products on 2425px track
 */
 
-// Images are 725×1200px RGBA PNGs from Anima export
-// Each is a pill-shaped card with background+product baked in (alpha outside oval)
+// Product cards: 362px wide × 600px tall (RGBA PNG with alpha outside oval shape)
 const products = [
   { id: 1, name: 'PREMIUM\nΚΟΝΣΕΡΒΕΣ',  href: '/proionta/konserves', image: '/assets/images/product-card-01.webp' },
   { id: 2, name: 'ΜΠΑΡΕΣ\nΠΡΩΤΕΪΝΗΣ',  href: '/proionta/mpares',    image: '/assets/images/product-card-02.webp' },
@@ -16,121 +15,213 @@ const products = [
 ---
 
 <section class="section products-adults" aria-labelledby="adults-title">
-  <div class="container">
+  <div class="products-adults__content">
 
-    <div class="products-adults__header">
-      <h2 id="adults-title" class="heading-section">ΠΡΟΪΟΝΤΑ ΓΙΑ ΕΝHΛΙΚΕΣ</h2>
-      <p class="section-subtitle">Ανακαλύψτε τη γεύση που συναντά τη διατροφική αξία. Προϊόντα φτιαγμένα για τον σύγχρονο τρόπο ζωής, με ποιοτικά υλικά και μοναδική απόλαυση σε κάθε μπουκιά.</p>
-    </div>
+    <!-- Section heading -->
+    <h2 id="adults-title" class="products-adults__title">ΠΡΟΪΟΝΤΑ ΓΙΑ ΕΝΗΛΙΚΕΣ</h2>
 
+    <!-- Section subtitle -->
+    <p class="products-adults__subtitle">
+      Ανακαλύψτε τη γεύση που συναντά τη διατροφική αξία. Προϊόντα φτιαγμένα για τον σύγχρονο τρόπο ζωής, με ποιοτικά υλικά και μοναδική απόλαυση σε κάθε μπουκιά.
+    </p>
+
+    <!-- Carousel container with arrows -->
     <div class="products-adults__carousel-wrap">
-      <!-- Prev arrow -->
-      <button class="slider-arrow products-adults__arrow products-adults__arrow--prev" aria-label="Προηγούμενο">
-        <svg viewBox="0 0 20 20" fill="none"><path d="M13 4L7 10L13 16" stroke="#474444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+
+      <!-- Left arrow -->
+      <button class="products-adults__arrow products-adults__arrow--prev" aria-label="Προηγούμενο">
+        <svg viewBox="0 0 14 23" fill="none">
+          <path d="M11 2L3 11.5L11 21" stroke="#474444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
       </button>
 
+      <!-- Carousel track (2425px wide, 600px tall) -->
       <div class="products-adults__track" id="adults-track">
         {products.map((p) => (
-          <a href={p.href} class="product-oval">
-            <!-- The Anima PNG is the complete oval card: product photo + bg + oval shape (alpha outside) -->
-            <img src={p.image} alt={p.name.replace('\n', ' ')} class="product-oval__img" loading="lazy" />
-            <span class="product-oval__name">
+          <a href={p.href} class="product-card" title={p.name.replace('\n', ' ')}>
+            <img
+              src={p.image}
+              alt={p.name.replace('\n', ' ')}
+              class="product-card__image"
+              loading="lazy"
+              width="362"
+              height="600"
+            />
+            <span class="product-card__label">
               {p.name.split('\n').map((line, i) => (
-                <span key={i}>{line}<br /></span>
+                <>{line}{i < p.name.split('\n').length - 1 && <br />}</>
               ))}
             </span>
           </a>
         ))}
       </div>
 
-      <!-- Next arrow -->
-      <button class="slider-arrow products-adults__arrow products-adults__arrow--next" aria-label="Επόμενο">
-        <svg viewBox="0 0 20 20" fill="none"><path d="M7 4L13 10L7 16" stroke="#474444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <!-- Right arrow -->
+      <button class="products-adults__arrow products-adults__arrow--next" aria-label="Επόμενο">
+        <svg viewBox="0 0 14 23" fill="none">
+          <path d="M3 2L11 11.5L3 21" stroke="#474444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
       </button>
     </div>
 
-    <div style="display:flex; justify-content:center; margin-top:50px;">
+    <!-- CTA button -->
+    <div class="products-adults__cta">
       <a href="/proionta" class="btn btn-dark">ΟΛΑ ΤΑ ΠΡΟΙΟΝΤΑ</a>
     </div>
+
   </div>
 </section>
 
 <style>
+/* XD: section on #e8e8e8 (gray-nurse) background */
 .products-adults {
-  background: #F7F5F2;
+  background-color: #e8e8e8;
+  padding-top: 80px;
+  padding-bottom: 80px;
 }
 
-.products-adults__header {
+.products-adults__content {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+/* XD text-6: ΠΡΟΪΟΝΤΑ ΓΙΑ ΕΝΗΛΙΚΕΣ */
+.products-adults__title {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+  line-height: 38.4px;
   text-align: center;
-  margin-bottom: 60px;
+  color: #474444;
+  margin: 0;
+  padding: 0;
+  text-transform: uppercase;
 }
 
-.section-subtitle {
+/* Subtitle: center, 777px wide, 62px height */
+.products-adults__subtitle {
   font-size: 17px;
   font-weight: 400;
   line-height: 1.6;
-  color: var(--dark);
+  color: #474444;
   opacity: 0.75;
-  max-width: 700px;
-  margin: 20px auto 0;
+  text-align: center;
+  width: 777px;
+  height: 62px;
+  margin: 18px auto 0;
+  padding: 0;
 }
 
+/* Carousel wrapper with left/right arrows */
 .products-adults__carousel-wrap {
   position: relative;
   display: flex;
   align-items: center;
-  gap: 16px;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 79px;
+  overflow: hidden;
 }
 
+/* Carousel track: 2425px wide, 600px tall, horizontal scroll with snap */
 .products-adults__track {
   display: flex;
-  gap: 28px;
+  width: 2425px;
+  height: 600px;
+  gap: 0;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
   scrollbar-width: none;
-  flex: 1;
-  padding: 20px 4px 30px;
+  /* Even spacing across 2425px for 5 cards at 362px each */
+  padding: 0;
 }
-.products-adults__track::-webkit-scrollbar { display: none; }
+.products-adults__track::-webkit-scrollbar {
+  display: none;
+}
 
+/* Navigation arrows: 14×23px */
 .products-adults__arrow {
-  flex-shrink: 0;
-  z-index: 2;
-}
-
-/* Oval product card — image IS the oval pill (RGBA PNG with alpha outside) */
-.product-oval {
-  flex: 0 0 280px;
-  /* height matches 725:1200 aspect = 280 * 1200/725 ≈ 463px */
-  scroll-snap-align: start;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  transition: transform 0.3s ease;
+  position: absolute;
+  width: 14px;
+  height: 23px;
+  background: none;
+  border: none;
+  padding: 0;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  flex-shrink: 0;
+  transition: opacity 0.2s ease;
+}
+.products-adults__arrow:hover {
+  opacity: 0.7;
+}
+.products-adults__arrow svg {
+  width: 100%;
+  height: 100%;
+}
+
+.products-adults__arrow--prev {
+  left: 20px;
+}
+.products-adults__arrow--next {
+  right: 20px;
+}
+
+/* Individual product card: 362px × 600px, oval/pill shape from alpha PNG */
+.product-card {
+  flex: 0 0 362px;
+  height: 600px;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
   text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.3s ease;
 }
-.product-oval:hover {
-  transform: translateY(-8px);
+.product-card:hover {
+  transform: translateY(-12px);
 }
 
-/* The Anima image already has the oval/pill shape in its alpha channel */
-.product-oval__img {
-  width: 280px;
-  height: auto;
+/* Product image: full 362×600, RGBA PNG with oval/pill alpha shape */
+.product-card__image {
+  width: 362px;
+  height: 600px;
   display: block;
-  /* preserve the transparent alpha around the oval */
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
-.product-oval__name {
-  margin-top: 16px;
+/* Product label overlay at bottom ~20% of card (480px from top) */
+.product-card__label {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
   text-align: center;
-  font-size: 15px;
+  font-size: 32px;
   font-weight: 700;
-  letter-spacing: 1.5px;
-  color: var(--dark);
+  letter-spacing: 1.6px;
+  line-height: 38.4px;
+  color: #474444;
   text-transform: uppercase;
-  line-height: 1.4;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* CTA button below carousel */
+.products-adults__cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
 }
 </style>

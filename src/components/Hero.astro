@@ -1,9 +1,8 @@
 ---
-/* Hero.astro — 2 full-bleed slides from XD design
-   Each slide is a 1820×750px assembled image from Anima export
-   Left text overlay: heading + subtext + dark CTA btn
-   group-31@1x.png  = Adults hero slide
-   group-31-1@1x.png = Kids hero slide
+/* Hero.astro - 2 full-bleed slides from XD design
+   Component-1-1: Hero slider with group-111 (adults) and group-110 (kids)
+   Each slide: 1820×750px background image with left text overlay
+   Positioned below fixed header with margin-top offset
 */
 
 const slides = [
@@ -31,7 +30,7 @@ const slides = [
 
     {slides.map((slide, i) => (
       <div class={`hero__slide ${i === 0 ? 'is-active' : ''}`} data-index={i}>
-        <!-- Full-bleed background image from Anima export -->
+        <!-- Full-bleed background image: 1820×750px -->
         <img
           src={slide.bgImage}
           alt=""
@@ -41,16 +40,16 @@ const slides = [
           loading={i === 0 ? 'eager' : 'lazy'}
         />
 
-        <!-- Text overlay positioned left as in XD -->
+        <!-- Text overlay positioned left as per XD -->
         <div class="hero__content">
           <div class="hero__left">
-            <h1 class="heading-hero hero__heading">
+            <h1 class="hero__heading">
               {slide.heading.split('\n').map((line, j) => (
-                <span key={j}>{line}<br /></span>
+                <span key={j}>{line}{j === 0 ? <br /> : null}</span>
               ))}
             </h1>
             <p class="hero__subtext">{slide.subtext}</p>
-            <a href={slide.ctaHref} class="btn btn-dark hero__cta">{slide.ctaText}</a>
+            <a href={slide.ctaHref} class="hero__cta">{slide.ctaText}</a>
           </div>
         </div>
       </div>
@@ -58,15 +57,21 @@ const slides = [
 
   </div>
 
-  <!-- Arrows -->
-  <button class="slider-arrow hero__arrow hero__arrow--prev" aria-label="Προηγούμενο slide">
-    <svg viewBox="0 0 20 20" fill="none"><path d="M13 4L7 10L13 16" stroke="#474444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-  </button>
-  <button class="slider-arrow hero__arrow hero__arrow--next" aria-label="Επόμενο slide">
-    <svg viewBox="0 0 20 20" fill="none"><path d="M7 4L13 10L7 16" stroke="#474444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  <!-- Previous arrow: left side, ~123px from edge -->
+  <button class="hero__arrow hero__arrow--prev" aria-label="Previous slide">
+    <svg viewBox="0 0 14 23" fill="none" width="14" height="23">
+      <path d="M12 1L2 11.5L12 22" stroke="#474444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
   </button>
 
-  <!-- Dot indicators -->
+  <!-- Next arrow: right side, ~123px from edge -->
+  <button class="hero__arrow hero__arrow--next" aria-label="Next slide">
+    <svg viewBox="0 0 14 23" fill="none" width="14" height="23">
+      <path d="M2 1L12 11.5L2 22" stroke="#474444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+
+  <!-- Dot indicators: centered at bottom -->
   <div class="hero__dots" role="tablist" aria-label="Slide navigation">
     {slides.map((_, i) => (
       <button
@@ -81,18 +86,21 @@ const slides = [
 </section>
 
 <style>
-/* ===== HERO ===== */
+/* ===== HERO SLIDER ===== */
 .hero {
   position: relative;
-  width: var(--container);     /* 1820px */
-  margin: 0 auto;
-  border-radius: var(--radius-hero);
+  width: 1820px;
+  max-width: calc(100vw - 100px);
+  margin: 171px auto 0;
+  border-radius: var(--radius-hero); /* 24px */
   overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .hero__track {
   position: relative;
   width: 100%;
+  height: 750px;
 }
 
 .hero__slide {
@@ -100,11 +108,13 @@ const slides = [
   width: 100%;
   height: 750px;
   display: none;
-  overflow: hidden;
 }
-.hero__slide.is-active { display: block; }
 
-/* Full-bleed assembled hero image (1820×750px from Anima) */
+.hero__slide.is-active {
+  display: block;
+}
+
+/* Background image: 1820×750px, cover */
 .hero__bg-img {
   position: absolute;
   inset: 0;
@@ -115,72 +125,166 @@ const slides = [
   display: block;
 }
 
-/* Text overlay — left side, matching XD: left:232px, ~33% from top */
+/* Text overlay positioning */
 .hero__content {
   position: absolute;
   inset: 0;
   z-index: 2;
   display: flex;
-  align-items: center;
-  padding: 0 0 0 232px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding-top: calc(33.36% - 39px);
+  padding-left: 232px;
 }
 
 .hero__left {
   display: flex;
   flex-direction: column;
-  gap: 28px;
-  max-width: 530px;
+  gap: 35px;
+  width: 100%;
 }
 
+/* Heading: text-22 from XD
+   font-size: 42.1px, bold, line-height: 60px, letter-spacing: 2.1px
+   color: #474444, width: ~528px
+*/
 .hero__heading {
-  /* Uses heading-hero: 42px, Bold, #474444, line-height 60px */
+  font-size: 42.1px;
+  font-weight: 700;
+  line-height: 60px;
+  letter-spacing: 2.1px;
+  color: #474444;
+  width: 528px;
+  margin: 0;
+  padding: 0;
 }
 
+.hero__heading span {
+  display: block;
+}
+
+.hero__heading span:first-child::after {
+  content: '';
+}
+
+/* Subtext: text-23 from XD
+   font-size: 17px, regular (400), letter-spacing: 0.09px
+   line-height: 25px, width: ~536px
+*/
 .hero__subtext {
   font-size: 17px;
   font-weight: 400;
-  line-height: 1.6;
-  color: var(--dark);
-  max-width: 460px;
+  line-height: 25px;
+  letter-spacing: 0.09px;
+  color: #474444;
+  width: 536px;
+  margin: 0;
+  padding: 0;
 }
 
+/* CTA Button: dark button
+   300×70px, border-radius: 35px, #474444 background
+   positioned: left: 233px, bottom: calc(33.88% - 24px)
+*/
 .hero__cta {
-  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 70px;
+  padding: 0;
+  background-color: #474444;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-decoration: none;
+  border: none;
+  border-radius: 35px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  white-space: nowrap;
 }
 
-/* Arrows */
+.hero__cta:hover {
+  background-color: #2a2825;
+  transform: translateY(-2px);
+}
+
+.hero__cta:active {
+  transform: translateY(0);
+}
+
+/* Navigation Arrows: 14×23px chevron icons
+   Previous: left ~123px, Next: right ~123px
+   Vertical center of slide
+*/
 .hero__arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   z-index: 3;
+  width: 24px;
+  height: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  opacity: 0.8;
 }
-.hero__arrow--prev { left: 28px; }
-.hero__arrow--next { right: 28px; }
 
-/* Dots */
+.hero__arrow:hover {
+  opacity: 1;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.hero__arrow--prev {
+  left: 123px;
+}
+
+.hero__arrow--next {
+  right: 123px;
+}
+
+.hero__arrow svg {
+  width: 14px;
+  height: 23px;
+  display: block;
+}
+
+/* Dot indicators: 3 dots, centered at bottom */
 .hero__dots {
   position: absolute;
   bottom: 24px;
   left: 50%;
   transform: translateX(-50%);
-  display: flex;
-  gap: 10px;
   z-index: 4;
+  display: flex;
+  gap: 12px;
 }
 
 .hero__dot {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: rgba(71,68,68,0.3);
+  background-color: rgba(71, 68, 68, 0.3);
   border: none;
   cursor: pointer;
-  transition: background 0.2s, transform 0.2s;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  padding: 0;
 }
+
+.hero__dot:hover {
+  background-color: rgba(71, 68, 68, 0.5);
+}
+
 .hero__dot.is-active {
-  background: var(--dark);
-  transform: scale(1.3);
+  background-color: #474444;
+  transform: scale(1.2);
 }
 </style>
 
@@ -196,7 +300,9 @@ function goTo(n: number) {
   slides[current]?.classList.remove('is-active');
   dots[current]?.classList.remove('is-active');
   dots[current]?.setAttribute('aria-selected', 'false');
+  
   current = (n + slides.length) % slides.length;
+  
   slides[current]?.classList.add('is-active');
   dots[current]?.classList.add('is-active');
   dots[current]?.setAttribute('aria-selected', 'true');
@@ -206,6 +312,6 @@ prevBtn?.addEventListener('click', () => goTo(current - 1));
 nextBtn?.addEventListener('click', () => goTo(current + 1));
 dots.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
 
-// Auto-advance every 5s
+// Auto-advance every 5 seconds
 setInterval(() => goTo(current + 1), 5000);
 </script>

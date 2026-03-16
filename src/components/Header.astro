@@ -1,16 +1,18 @@
 ---
 /* Header.astro — Pixel-perfect from XD specs
-   Navbar height: ~170px total area
-   Search pill container: 1440×70px, border-radius 35px
-   Green ΠΡΟΪΟΝΤΑ btn: 200×70px, #859E66, border-radius 35px
+   Fixed gradient header with absolute-positioned navbar elements
 */
 ---
 
 <header class="header">
-  <div class="header__inner">
+  <!-- Gradient background -->
+  <div class="header__gradient"></div>
 
-    <!-- LEFT: ΠΡΟΪΟΝΤΑ green pill button -->
-    <button class="btn btn-green header__products-btn" aria-label="Προϊόντα menu">
+  <!-- Navbar bar container -->
+  <div class="header__navbar">
+    
+    <!-- GREEN ΠΡΟΪΟΝΤΑ button (absolute left) -->
+    <button class="header__products-btn" aria-label="Προϊόντα menu">
       <svg class="header__hamburger" width="20" height="14" viewBox="0 0 20 14" fill="none">
         <rect width="20" height="2" rx="1" fill="currentColor"/>
         <rect y="6" width="20" height="2" rx="1" fill="currentColor"/>
@@ -19,13 +21,15 @@
       <span>ΠΡΟΪΟΝΤΑ</span>
     </button>
 
-    <!-- CENTER: Logo -->
-    <a href="/" class="header__logo" aria-label="Nutri Valley - Αρχική">
-      <img src="/assets/images/nutri-valley-logo.svg" alt="Nutri Valley" width="216" height="45" />
-    </a>
+    <!-- WHITE PILL container (absolute) -->
+    <div class="header__pill">
+      
+      <!-- Logo inside pill -->
+      <a href="/" class="header__logo" aria-label="Nutri Valley - Αρχική">
+        <img src="/assets/images/nutri-valley-logo.svg" alt="Nutri Valley" width="217" height="45" />
+      </a>
 
-    <!-- NAV LINKS inside pill container -->
-    <div class="header__nav-pill">
+      <!-- Nav links inside pill -->
       <nav class="header__nav" aria-label="Main navigation">
         <a href="/syntages" class="nav-link">ΣΥΝΤΑΓΕΣ</a>
         <a href="/diagwnismoi" class="nav-link">ΔΙΑΓΩΝΙΣΜΟΙ</a>
@@ -35,23 +39,26 @@
         <a href="/epikoinwnia" class="nav-link">ΕΠΙΚΟΙΝΩΝΙΑ</a>
       </nav>
 
-      <!-- RIGHT ICONS inside pill -->
+      <!-- RIGHT ICONS (two circles) inside pill -->
       <div class="header__icons">
-        <button class="header__icon-btn" aria-label="Αλλαγή γλώσσας">
-          <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+        <!-- Search circle (globe) -->
+        <button class="header__icon-circle header__icon-globe" aria-label="Αλλαγή γλώσσας">
+          <svg width="23" height="23" viewBox="0 0 26 26" fill="none">
             <circle cx="13" cy="13" r="11.5" stroke="#474444" stroke-width="1.5"/>
             <ellipse cx="13" cy="13" rx="5.5" ry="11.5" stroke="#474444" stroke-width="1.5"/>
             <line x1="2" y1="9.5" x2="24" y2="9.5" stroke="#474444" stroke-width="1.5"/>
             <line x1="2" y1="16.5" x2="24" y2="16.5" stroke="#474444" stroke-width="1.5"/>
           </svg>
         </button>
-        <button class="header__icon-btn" aria-label="Αναζήτηση">
-          <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+        <!-- Language/search circle (magnifier) -->
+        <button class="header__icon-circle header__icon-search" aria-label="Αναζήτηση">
+          <svg width="17" height="17" viewBox="0 0 26 26" fill="none">
             <circle cx="11" cy="11" r="8.5" stroke="#474444" stroke-width="1.5"/>
             <line x1="17.5" y1="17.5" x2="24" y2="24" stroke="#474444" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
         </button>
       </div>
+
     </div>
 
   </div>
@@ -139,37 +146,94 @@
 <style>
 /* ===== HEADER ===== */
 .header {
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: 100;
-  background: var(--white);
-  width: 100%;
-  padding: 50px 50px;          /* matches XD: btn top:50px left:50px */
+  left: 0;
+  right: 0;
+  z-index: 7;
+  width: 1920px;
+  height: 260px;
 }
 
-.header__inner {
-  display: flex;
-  align-items: center;
-  gap: 28px;
+/* Gradient background (group-117) */
+.header__gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 260px;
+  background: linear-gradient(180deg, #e8e8e8 0%, rgba(232, 232, 232, 0) 100%);
   width: 100%;
-  max-width: 1820px;
-  margin: 0 auto;
+  pointer-events: none;
 }
 
-/* Green ΠΡΟΪΟΝΤΑ button */
+/* Navbar bar (navbar-1) — relative for absolute positioning of children */
+.header__navbar {
+  position: relative;
+  height: 70px;
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-top: 21px;
+  flex: 1;
+}
+
+/* Green ΠΡΟΪΟΝΤΑ button (rectangle-33) — absolute left */
 .header__products-btn {
-  flex-shrink: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 200px;
+  height: 100%;
+  background-color: #859e66;
+  border-radius: 35px;
+  border: none;
+  cursor: pointer;
   display: flex;
   align-items: center;
   gap: 10px;
+  padding: 0;
+  padding-left: 26px;
   font-size: 17px;
+  font-weight: 700;
   letter-spacing: 1.7px;
-  padding: 0 24px;
+  color: #fdfffd;
+  transition: background 0.2s;
 }
-.header__hamburger { flex-shrink: 0; }
+.header__products-btn:hover {
+  background-color: #7a8d5a;
+}
 
-/* Logo */
+.header__hamburger {
+  width: 20px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+.header__products-btn span {
+  margin-left: 8px;
+}
+
+/* White pill container (rectangle-32) — absolute, calc width */
+.header__pill {
+  position: absolute;
+  left: 215px;
+  top: 1px;
+  width: calc(100% - 380px);
+  height: 100%;
+  background-color: #fdfffd;
+  border-radius: 35px;
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+/* Logo inside pill (group-34) — absolute positioned */
 .header__logo {
+  position: absolute;
+  left: 230px;
+  top: calc(50% - 22.5px);
+  height: 45px;
+  width: 217px;
   flex-shrink: 0;
   display: flex;
   align-items: center;
@@ -179,49 +243,115 @@
   width: auto;
 }
 
-/* Pill nav container — 1440×70px from XD */
-.header__nav-pill {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 70px;
-  background: var(--white);
-  border-radius: var(--radius-pill);
-  border: 1.5px solid var(--light);
-  padding: 0 28px;
-  gap: 20px;
-}
-
+/* Nav links — positioned absolutely inside pill */
 .header__nav {
+  position: absolute;
+  bottom: calc(47.96% - 12px);
   display: flex;
   align-items: center;
-  gap: 36px;
+  gap: 0;
 }
 
-.header__nav .nav-link {
+.nav-link {
+  position: absolute;
+  bottom: 0;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 1.7px;
+  line-height: 20.4px;
+  color: #474444;
+  text-decoration: none;
   transition: color 0.2s;
+  white-space: nowrap;
 }
-.header__nav .nav-link:hover { color: var(--green); }
+.nav-link:hover {
+  color: #859e66;
+}
 
+/* Nav link positioning from XD specs */
+.nav-link:nth-child(1) {
+  /* ΣΥΝΤΑΓΕΣ */
+  right: calc(49.98% - 45px);
+  width: 90px;
+}
+.nav-link:nth-child(2) {
+  /* ΔΙΑΓΩΝΙΣΜΟΙ */
+  right: calc(41.11% - 51px);
+  width: 125px;
+}
+.nav-link:nth-child(3) {
+  /* EVENTS */
+  right: calc(33.45% - 23px);
+  width: 69px;
+}
+.nav-link:nth-child(4) {
+  /* BLOG */
+  right: calc(28.09% - 14px);
+  width: 49px;
+}
+.nav-link:nth-child(5) {
+  /* ΣΧΕΤΙΚΑ */
+  right: calc(22.09% - 16px);
+  width: 74px;
+}
+.nav-link:nth-child(6) {
+  /* ΕΠΙΚΟΙΝΩΝΙΑ */
+  right: 217px;
+  width: 125px;
+}
+
+/* Right icons container — absolute positioning */
 .header__icons {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 0;
 }
 
-.header__icon-btn {
-  background: none;
+/* Icon circles */
+.header__icon-circle {
+  position: absolute;
+  top: 0;
+  width: 70px;
+  height: 100%;
+  background-color: #fdfffd;
+  border-radius: 35px;
   border: none;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 4px;
-  border-radius: 50%;
+  padding: 0;
   transition: background 0.2s;
 }
-.header__icon-btn:hover { background: var(--light); }
+.header__icon-circle:hover {
+  background-color: #f5f5f5;
+}
+
+/* Globe icon (search circle) — ellipse-11 */
+.header__icon-globe {
+  right: 81px;
+}
+.header__icon-globe svg {
+  position: absolute;
+  right: 23px;
+  width: 23px;
+  height: 23px;
+}
+
+/* Search icon (language/search circle) — ellipse-9 */
+.header__icon-search {
+  right: 0;
+}
+.header__icon-search svg {
+  position: absolute;
+  right: 27px;
+  width: 17px;
+  height: 17px;
+}
 
 /* ===== MEGA MENU ===== */
 .mega-menu {
@@ -250,10 +380,10 @@
 /* White rounded panel */
 .mega-menu__panel {
   position: absolute;
-  top: 50px;   /* matches header top padding */
+  top: 50px;
   left: 50px;
   right: 50px;
-  margin-top: 120px;  /* below header row */
+  margin-top: 120px;
   background: var(--white);
   border-radius: 42px;
   display: flex;

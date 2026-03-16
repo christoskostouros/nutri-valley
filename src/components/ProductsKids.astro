@@ -1,9 +1,11 @@
 ---
 /* ProductsKids.astro — ΠΑΙΔΙΚΑ ΠΡΟΪΟΝΤΑ
-   XD: 4 cards, each 573×740px
-   - Full-bleed background image (group-52, 54, 56, 99 from Anima)
-   - Brand logo centered at top ~60px from top
-   - White pill CTA button at bottom (calc(100%-40px) wide, 70px tall, radius 35px)
+   XD specs: 2443px total width (overflows by 573px for carousel peek)
+   - Section heading + subtitle ABOVE the cards
+   - Cards container: 2443×740px, positioned with margin-right: -573.17px
+   - 4 cards at 573×740px each
+   - Each card has logo centered at top ~60px
+   - White pill CTA at bottom: left:20px, right:20px, height:70px, radius:35px
 */
 
 const brands = [
@@ -12,135 +14,192 @@ const brands = [
     name: 'Brand 1',
     href: '/proionta/paidia',
     bgImage: '/assets/images/kids-card-01.webp',
-    logo:    '/assets/images/kids-logo-01.webp',
+    logoImage: '/assets/images/kids-logo-01.webp',
+    logoWidth: 146,
+    logoHeight: 70,
+    logoTop: 60,
     ctaText: 'ΟΛΑ ΤΑ ΠΡΟΙΟΝΤΑ',
+    left: 0,
   },
   {
     id: 'brand-2',
     name: 'Brand 2',
     href: '/proionta/paidia',
     bgImage: '/assets/images/kids-card-02.webp',
-    logo:    '/assets/images/kids-logo-02.webp',
+    logoImage: '/assets/images/kids-logo-02.webp',
+    logoWidth: 146,
+    logoHeight: 70,
+    logoTop: 60,
     ctaText: 'ΟΛΑ ΤΑ ΠΡΟΙΟΝΤΑ',
+    left: 'calc(33.33% - 191px)',
   },
   {
     id: 'brand-3',
     name: 'Brand 3',
     href: '/proionta/paidia',
     bgImage: '/assets/images/kids-card-03.webp',
-    logo:    '/assets/images/kids-logo-03.webp',
+    logoImage: '/assets/images/kids-logo-03.webp',
+    logoWidth: 177,
+    logoHeight: 58,
+    logoTop: 66,
     ctaText: 'ΟΛΑ ΤΑ ΠΡΟΙΟΝΤΑ',
+    right: 'calc(33.34% - 191px)',
   },
   {
     id: 'brand-4',
     name: 'Brand 4',
     href: '/proionta/paidia',
     bgImage: '/assets/images/kids-card-04.webp',
-    logo:    '/assets/images/kids-logo-04.webp',
+    logoImage: '/assets/images/kids-logo-04.webp',
+    logoWidth: 187,
+    logoHeight: 65,
+    logoTop: 63,
     ctaText: 'ΟΛΑ ΤΑ ΠΡΟΙΟΝΤΑ',
+    right: 0,
   },
 ];
 ---
 
-<section class="section products-kids" aria-labelledby="kids-title">
-  <div class="container">
-
-    <div class="products-kids__header">
-      <h2 id="kids-title" class="heading-section">ΠΑΙΔΙΚΑ ΠΡΟΪΟΝΤΑ</h2>
-      <p class="section-subtitle">Αγαπημένοι ήρωες, υγιεινές γεύσεις! Προϊόντα σχεδιασμένα ειδικά για παιδιά, με τους αγαπημένους τους χαρακτήρες και πλούσια διατροφική αξία.</p>
-    </div>
-
-    <!-- 4 brand cards in a row, scrollable -->
-    <div class="kids-cards">
-      {brands.map((brand) => (
-        <div class="kids-card">
-          <!-- Full-bleed assembled card image from Anima (573×740px) -->
-          <img src={brand.bgImage} alt={`${brand.name} προϊόντα`} class="kids-card__bg" loading="lazy" />
-
-          <!-- Brand logo top-center (rectangle-52 etc. from Anima) -->
-          <div class="kids-card__logo-wrap">
-            <img src={brand.logo} alt="" class="kids-card__logo" loading="lazy" />
-          </div>
-
-          <!-- White pill CTA at bottom (matches XD: left:20px bottom:20px w:calc(100%-40px) h:70px radius:35px) -->
-          <a href={brand.href} class="kids-card__cta">
-            {brand.ctaText}
-          </a>
-        </div>
-      ))}
-    </div>
-
+<section class="products-kids" aria-labelledby="kids-title">
+  <!-- Heading and subtitle positioned ABOVE cards -->
+  <div class="products-kids__header">
+    <h2 id="kids-title" class="heading-section">ΠΑΙΔΙΚΑ ΠΡΟΪΟΝΤΑ</h2>
+    <p class="section-subtitle">Αγαπημένοι ήρωες, υγιεινές γεύσεις! Προϊόντα σχεδιασμένα ειδικά για παιδιά, με τους αγαπημένους τους χαρακτήρες και πλούσια διατροφική αξία.</p>
   </div>
+
+  <!-- Cards container: 2443×740px with right overflow for carousel effect -->
+  <div class="kids-cards-container">
+    {brands.map((brand) => (
+      <div 
+        class="kids-card"
+        style={{
+          ...(brand.left !== undefined && { left: typeof brand.left === 'number' ? `${brand.left}px` : brand.left }),
+          ...(brand.right !== undefined && { right: typeof brand.right === 'number' ? `${brand.right}px` : brand.right }),
+        }}
+      >
+        <!-- Full-bleed assembled card image -->
+        <img src={brand.bgImage} alt={`${brand.name} προϊόντα`} class="kids-card__bg" loading="lazy" />
+
+        <!-- Brand logo centered at top -->
+        <div 
+          class="kids-card__logo-wrap"
+          style={{ top: `${brand.logoTop}px` }}
+        >
+          <img 
+            src={brand.logoImage} 
+            alt="" 
+            class="kids-card__logo"
+            style={{ width: `${brand.logoWidth}px`, height: `${brand.logoHeight}px` }}
+            loading="lazy" 
+          />
+        </div>
+
+        <!-- White pill CTA at bottom -->
+        <a href={brand.href} class="kids-card__cta">
+          {brand.ctaText}
+        </a>
+      </div>
+    ))}
+  </div>
+
+  <!-- Navigation arrow indicator (optional, can be enhanced) -->
+  <div class="kids-nav-arrow"></div>
 </section>
 
 <style>
 .products-kids {
   background: var(--white);
+  display: flex;
+  flex-direction: column;
+  align-self: flex-end;
+  position: relative;
+  overflow: hidden;
 }
 
 .products-kids__header {
   text-align: center;
+  margin-top: 0;
   margin-bottom: 60px;
+  padding: 0 20px;
+}
+
+.heading-section {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+  line-height: 38.4px;
+  text-align: center;
+  color: var(--dark);
+  margin: 0 0 16px 0;
 }
 
 .section-subtitle {
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 400;
   line-height: 1.6;
   color: var(--dark);
   opacity: 0.75;
-  max-width: 700px;
-  margin: 20px auto 0;
+  max-width: 777px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
-/* 4-column grid, scroll on overflow */
-.kids-cards {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-.kids-cards::-webkit-scrollbar { display: none; }
-
-/* Card container — relative so we can overlay logo + cta on the bg image */
-.kids-card {
+/* Cards container: 2443×740px positioned with right overflow */
+.kids-cards-container {
   position: relative;
-  border-radius: 24px;
-  overflow: hidden;
-  aspect-ratio: 573 / 740;  /* matches Anima card dimensions */
-  transition: transform 0.3s ease;
+  width: 2443px;
+  height: 740px;
+  margin-right: -573.17px;
+  margin-top: 60px;
   flex-shrink: 0;
 }
-.kids-card:hover { transform: translateY(-6px); }
 
-/* Full-bleed assembled card image */
+/* Individual card: 573×740px */
+.kids-card {
+  position: absolute;
+  width: 573px;
+  height: 740px;
+  border-radius: 24px;
+  overflow: hidden;
+  background: var(--white);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.kids-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Full-bleed card background image */
 .kids-card__bg {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
+  z-index: 1;
 }
 
-/* Brand logo — top-center, ~60px from top, matches Anima: top:60px centered */
+/* Logo wrapper — centered horizontally, positioned from top */
 .kids-card__logo-wrap {
   position: absolute;
-  top: 8%;   /* ~60/740 */
   left: 0;
   right: 0;
+  width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
   z-index: 2;
 }
+
 .kids-card__logo {
-  max-width: 50%;
-  height: auto;
   object-fit: contain;
+  display: block;
 }
 
-/* White pill CTA — bottom, matches XD: left:20px bottom:20px w:calc(100%-40px) h:70px radius:35px */
+/* White pill CTA button at bottom */
 .kids-card__cta {
   position: absolute;
   left: 20px;
@@ -149,20 +208,38 @@ const brands = [
   height: 70px;
   border-radius: 35px;
   background: var(--white);
+  color: #474444;
+  
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 14px;
+  
+  font-size: 16px;
   font-weight: 700;
   letter-spacing: 1.6px;
-  color: var(--dark);
   text-transform: uppercase;
   text-decoration: none;
+  
   z-index: 3;
-  transition: background 0.2s, color 0.2s;
+  transition: background 0.2s ease, color 0.2s ease;
 }
+
 .kids-card__cta:hover {
-  background: var(--dark);
+  background: #474444;
   color: var(--white);
+}
+
+/* Navigation arrow indicator */
+.kids-nav-arrow {
+  position: absolute;
+  left: 1733px;
+  top: 50%;
+  width: 14px;
+  height: 23px;
+  transform: translateY(-50%);
+  background: url('data:image/svg+xml;utf8,<svg width="14" height="23" viewBox="0 0 14 23" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 2l10 9.5L2 21" stroke="%23474444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>') no-repeat center;
+  background-size: contain;
+  z-index: 4;
+  pointer-events: none;
 }
 </style>

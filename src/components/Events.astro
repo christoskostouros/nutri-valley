@@ -1,102 +1,157 @@
 ---
 /* Events.astro — Η NUTRI VALLEY ΤΑΞΙΔΕΥΕΙ ΠΑΝΤΟΥ
-   Beige paper-texture background
-   Text left + stacked event photos right
-   White outline button "ΟΛΑ ΤΑ EVENTS"
+   XD Specs: 1920px × 805px with texture overlay
+   Text and photos positioned absolutely per XD coordinates
 */
 ---
 
 <section class="events" aria-labelledby="events-title">
-  <div class="events__bg">
-    <div class="container events__inner">
+  <!-- Texture overlay -->
+  <div class="events__texture"></div>
 
-      <!-- LEFT: text content -->
-      <div class="events__content">
-        <h2 id="events-title" class="events__heading">
-          Η NUTRI VALLEY ΤΑΞΙΔΕΥΕΙ ΠΑΝΤΟΥ.<br/>
-          ΕΛΑΤΕ ΝΑ ΓΝΩΡΙΣΤΟΥΜΕ ΣΕ<br/>
-          ΚΑΠΟΙΟ EVENT ΜΑΣ!
-        </h2>
-        <a href="/events" class="btn btn-outline-dark events__cta">ΟΛΑ ΤΑ EVENTS</a>
-      </div>
+  <!-- Text content - absolutely positioned -->
+  <div class="events__content">
+    <h2 id="events-title" class="events__heading">
+      Η NUTRI VALLEY ΤΑΞΙΔΕΥΕΙ ΠΑΝΤΟΥ.<br/>
+      ΕΛΑΤΕ ΝΑ ΓΝΩΡΙΣΤΟΥΜΕ ΣΕ<br/>
+      ΚΑΠΟΙΟ EVENT ΜΑΣ!
+    </h2>
 
-      <!-- RIGHT: stacked event photos -->
-      <div class="events__photos" aria-hidden="true">
-        <div class="events__photo events__photo--back">
-          <img src="/assets/images/event-photo-01.webp" alt="" loading="lazy" />
-        </div>
-        <div class="events__photo events__photo--mid">
-          <img src="/assets/images/event-photo-02.webp" alt="" loading="lazy" />
-        </div>
-        <div class="events__photo events__photo--front">
-          <img src="/assets/images/event-photo-03.webp" alt="Nutri Valley event" loading="lazy" />
-        </div>
-      </div>
+    <div class="events__subtitle">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    </div>
 
+    <a href="/events" class="events__cta">ΟΛΑ ΤΑ EVENTS</a>
+  </div>
+
+  <!-- Photos container - absolutely positioned -->
+  <div class="events__photos" aria-hidden="true">
+    <!-- Back photo -->
+    <div class="events__photo events__photo--back">
+      <img src="/assets/images/event-photo-01.webp" alt="" loading="lazy" />
+    </div>
+
+    <!-- Mid photo -->
+    <div class="events__photo events__photo--mid">
+      <img src="/assets/images/event-photo-02.webp" alt="" loading="lazy" />
+    </div>
+
+    <!-- Front photo -->
+    <div class="events__photo events__photo--front">
+      <img src="/assets/images/event-photo-03.webp" alt="Nutri Valley event" loading="lazy" />
     </div>
   </div>
 </section>
 
 <style>
+/* Section: 1920px × 805px with margin-top 200px */
 .events {
-  width: 100%;
-}
-
-.events__bg {
-  background-color: #E8DDD0;
-  min-height: 560px;
-}
-
-.events__inner {
-  display: flex;
-  align-items: center;
-  gap: 80px;
-  min-height: 560px;
-  padding-top: 80px;
-  padding-bottom: 80px;
-}
-
-.events__content {
-  flex: 0 0 560px;
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
-}
-
-.events__heading {
-  font-size: 28px;
-  font-weight: 700;
-  line-height: 1.5;
-  letter-spacing: 1.5px;
-  color: var(--dark);
-  text-transform: uppercase;
-}
-
-.events__subtext {
-  font-size: 16px;
-  line-height: 1.7;
-  color: var(--dark);
-  max-width: 480px;
-}
-
-.events__cta {
-  align-self: flex-start;
-}
-
-/* Stacked photos */
-.events__photos {
-  flex: 1;
   position: relative;
-  height: 460px;
-  min-width: 460px;
+  width: 1920px;
+  height: 805px;
+  margin-top: 200px;
+  background-color: #c4b2a3;
+  overflow: hidden;
 }
 
+/* Texture overlay: group-67 */
+.events__texture {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1920px;
+  height: 805px;
+  background-image: url(/assets/images/events-texture.webp);
+  background-size: cover;
+  background-position: 50% 50%;
+  mix-blend-mode: multiply;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Text content - absolutely positioned */
+.events__content {
+  position: absolute;
+  left: 415px;
+  top: 247px;
+  width: 523px;
+  z-index: 10;
+}
+
+/* Heading: nutri-valley-1 */
+.events__heading {
+  width: 523px;
+  height: 74px;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 32px;
+  letter-spacing: 1.05px;
+  color: #474444;
+  margin: 0;
+  padding: 0;
+}
+
+/* Subtitle: lorem-ipsum-dolor-si-4 */
+.events__subtitle {
+  position: absolute;
+  left: 0;
+  top: 84px;
+  width: 523px;
+  height: 115px;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 25px;
+  color: #474444;
+}
+
+/* CTA button: component-8-1 */
+.events__cta {
+  position: absolute;
+  left: 0;
+  top: 229px;
+  width: 300px;
+  height: 70px;
+  background-color: #fdfffd;
+  background-image: url(/assets/images/events-texture.webp);
+  background-size: cover;
+  background-position: 50% 50%;
+  border: none;
+  border-radius: 35px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 600;
+  color: #474444;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.events__cta:hover {
+  background-color: #f5f5f5;
+  transform: translateY(-2px);
+}
+
+/* Photos container: component-7-1 */
+.events__photos {
+  position: absolute;
+  left: 1016px;
+  top: 148px;
+  width: 518px;
+  height: 515px;
+  z-index: 5;
+}
+
+/* Photo base styles */
 .events__photo {
   position: absolute;
-  border-radius: var(--radius-card);
+  border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+  background-size: cover;
+  background-position: center;
 }
+
 .events__photo img {
   width: 100%;
   height: 100%;
@@ -104,34 +159,30 @@
   display: block;
 }
 
-/* Back photo: widest, slightly rotated right, top */
+/* Back photo: group-71/group-70 */
 .events__photo--back {
-  width: 380px;
-  height: 260px;
-  top: 0;
   left: 0;
-  transform: rotate(-3deg);
+  top: 0;
+  width: 470px;
+  height: 515px;
   z-index: 1;
 }
 
-/* Middle photo: right side, partially behind front */
+/* Mid photo: group-73/group-72 */
 .events__photo--mid {
-  width: 320px;
-  height: 290px;
-  top: 60px;
   right: 0;
-  transform: rotate(2deg);
+  top: 24px;
+  width: 392px;
+  height: 468px;
   z-index: 2;
 }
 
-/* Front photo: largest, bottom center, slight left tilt */
+/* Front photo: group-75/group-74 */
 .events__photo--front {
-  width: 300px;
-  height: 340px;
-  bottom: 0;
-  left: 40px;
-  transform: rotate(1deg);
+  right: 77px;
+  top: 45px;
+  width: 324px;
+  height: 418px;
   z-index: 3;
-  background: var(--light);
 }
 </style>
