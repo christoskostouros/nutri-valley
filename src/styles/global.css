@@ -64,8 +64,7 @@ body {
   color: var(--dark);
   background: var(--white);
   width: 1920px;
-  margin: 0;
-  transform-origin: top left;
+  margin: 0 auto;
 }
 
 html {

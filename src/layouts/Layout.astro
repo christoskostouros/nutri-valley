@@ -21,23 +21,20 @@ const {
   <body>
     <slot />
     <script>
-      // Scale the 1920px design to fit any viewport width
-      function scaleBody() {
+      // Use CSS zoom to scale the 1920px design proportionally.
+      // Unlike transform:scale, zoom properly affects layout flow,
+      // so the page centers correctly and scrolling works naturally.
+      function applyZoom() {
         const vw = window.innerWidth;
         if (vw < 1920) {
-          const scale = vw / 1920;
-          document.body.style.transform = `scale(${scale})`;
-          // Adjust the visible height so no extra whitespace below
-          document.documentElement.style.height = `${document.body.scrollHeight * scale}px`;
+          document.body.style.zoom = String(vw / 1920);
         } else {
-          document.body.style.transform = 'none';
-          document.documentElement.style.height = '';
+          document.body.style.zoom = '1';
         }
       }
-      scaleBody();
-      window.addEventListener('resize', scaleBody);
-      // Re-check after all content loads (images etc.)
-      window.addEventListener('load', scaleBody);
+      applyZoom();
+      window.addEventListener('resize', applyZoom);
+      window.addEventListener('load', applyZoom);
     </script>
   </body>
 </html>
@@ -110,8 +107,7 @@ body {
   color: var(--dark);
   background: var(--white);
   width: 1920px;
-  margin: 0;
-  transform-origin: top left;
+  margin: 0 auto;
 }
 
 html {

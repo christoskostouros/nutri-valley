@@ -1,1 +1,1 @@
-Fix responsive layout - replace all fixed pixel widths with max-width + 100pct width  
+Fix layout: use JS viewport scaling for 1920px design, restore fixed pixel widths  
