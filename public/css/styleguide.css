@@ -1,0 +1,73 @@
+:root { 
+  --coconut: #fdfffd;
+  --gray-nurse: #e8e8e8;
+  --tundora: #474444;
+  --white: #ffffff;
+ 
+  --font-size-l: 18px;
+  --font-size-m: 17px;
+  --font-size-s: 16px;
+  --font-size-xl: 21px;
+  --font-size-xs: 15px;
+  --font-size-xxl: 32px;
+  --font-size-xxxl: 42.1px;
+ 
+  --font-family-tiktoksans18pt-bold: "TikTokSans18pt-Bold", Helvetica;
+  --font-family-tiktoksans18pt-medium: "TikTokSans18pt-Medium", Helvetica;
+  --font-family-tiktoksans18pt-regular: "TikTokSans18pt-Regular", Helvetica;
+}
+.tiktoksans18pt-bold-tundora-17px {
+  color: var(--tundora);
+  font-family: var(--font-family-tiktoksans18pt-bold);
+  font-size: var(--font-size-m);
+  font-style: normal;
+  font-weight: 700;
+}
+
+.tiktoksans18pt-bold-tundora-32px {
+  color: var(--tundora);
+  font-family: var(--font-family-tiktoksans18pt-bold);
+  font-size: var(--font-size-xxl);
+  font-style: normal;
+  font-weight: 700;
+}
+
+.tiktoksans18pt-regular-normal-tundora-17px {
+  color: var(--tundora);
+  font-family: var(--font-family-tiktoksans18pt-regular);
+  font-size: var(--font-size-m);
+  font-style: normal;
+  font-weight: 400;
+}
+
+.tiktoksans18pt-bold-coconut-16px {
+  color: var(--coconut);
+  font-family: var(--font-family-tiktoksans18pt-bold);
+  font-size: var(--font-size-s);
+  font-style: normal;
+  font-weight: 700;
+}
+
+.tiktoksans18pt-bold-tundora-16px {
+  color: var(--tundora);
+  font-family: var(--font-family-tiktoksans18pt-bold);
+  font-size: var(--font-size-s);
+  font-style: normal;
+  font-weight: 700;
+}
+
+.tiktoksans18pt-bold-tundora-21px {
+  color: var(--tundora);
+  font-family: var(--font-family-tiktoksans18pt-bold);
+  font-size: var(--font-size-xl);
+  font-style: normal;
+  font-weight: 700;
+}
+
+.tiktoksans18pt-medium-tundora-17px {
+  color: var(--tundora);
+  font-family: var(--font-family-tiktoksans18pt-medium);
+  font-size: var(--font-size-m);
+  font-style: normal;
+  font-weight: 500;
+}

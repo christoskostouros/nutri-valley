@@ -1,0 +1,26 @@
+/* Font-face declarations mapping Anima font names to system fonts.
+   Replace with actual TikTokSans font files when available. */
+
+@font-face {
+  font-family: 'TikTokSans18pt-Bold';
+  src: local('TikTokSans18pt-Bold'), local('TikTokSans-Bold'), local('system-ui');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'TikTokSans18pt-Medium';
+  src: local('TikTokSans18pt-Medium'), local('TikTokSans-Medium'), local('system-ui');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'TikTokSans18pt-Regular';
+  src: local('TikTokSans18pt-Regular'), local('TikTokSans-Regular'), local('system-ui');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
