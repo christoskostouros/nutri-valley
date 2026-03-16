@@ -6,8 +6,56 @@ import Layout from '../layouts/Layout.astro';
   title="Nutri Valley - Moments of Delight | Θρεπτικές Επιλογές"
   description="Θρεπτικές επιλογές σχεδιασμένες για τον σύγχρονο τρόπο ζωής. Premium κονσέρβες, μπάρες πρωτεΐνης, γκοφρέτες, ταχίνι και παιδικά προϊόντα."
 >
+
   <div class="container-center-horizontal">
     <div class="homepage-desktop screen">
+      <!-- Mega Menu -->
+      <div class="mega-menu" id="megaMenu">
+        <div class="mega-menu-overlay"></div>
+        <div class="mega-menu-panel">
+          <div class="mega-menu-tabs">
+            <div class="mega-menu-tab active" data-tab="adults">
+              <span>ΠΡΟΪΟΝΤΑ ΓΙΑ ΕΝΗΛΙΚΕΣ</span>
+              <img src="/img/path-36@1x.png" alt="" />
+            </div>
+            <div class="mega-menu-tab" data-tab="kids">
+              <span>ΠΑΙΔΙΚΑ ΠΡΟΪΟΝΤΑ</span>
+              <img src="/img/path-36@1x.png" alt="" />
+            </div>
+          </div>
+
+          <!-- Adults Content -->
+          <div class="mega-menu-content active" id="adultsContent">
+            <div class="mega-menu-grid">
+              <div class="mega-menu-item" style="background-image: url(/img/group-8@1x.png); background-size:cover; background-position:center; width:325px; height:410px;"></div>
+              <div class="mega-menu-item" style="background-image: url(/img/group-10@1x.png); background-size:cover; background-position:center; width:325px; height:410px;"></div>
+              <div class="mega-menu-item" style="background-image: url(/img/group-12@1x.png); background-size:cover; background-position:center; width:325px; height:410px;"></div>
+              <div class="mega-menu-item" style="background-image: url(/img/group-14@1x.png); background-size:cover; background-position:center; width:325px; height:410px;"></div>
+            </div>
+            <div class="mega-menu-logos">
+              <img src="/img/rectangle-12@1x.png" alt="" style="height:65px;" />
+              <img src="/img/rectangle-13@1x.png" alt="" style="height:65px;" />
+              <div style="background-image:url(/img/group-16@1x.png); background-size:cover; width:164px; height:54px;"></div>
+              <img src="/img/rectangle-15@1x.png" alt="" style="height:60px;" />
+            </div>
+          </div>
+
+          <!-- Kids Content -->
+          <div class="mega-menu-content" id="kidsContent">
+            <div class="mega-menu-text-list">
+              <div class="mega-menu-text-col">Premium Κονσέρβες
+Μπάρες Πρωτεΐνης
+Γκοφρέτες
+Ταχίνι</div>
+              <div class="mega-menu-text-col">Γκρανόλα
+Νιφάδες Βρώμης
+Νιφάδες Καλαμποκιού</div>
+            </div>
+            <div class="mega-menu-image" style="background-image:url(/img/group-25@1x.png); background-size:cover; background-position:center; width:670px; height:410px;"></div>
+          </div>
+        </div>
+      </div>
+
       <div class="overlap-group1">
         <div class="rectangle-30"></div>
         <div class="h tiktoksans18pt-bold-tundora-32px">ΠΡΟΪΟΝΤΑ ΓΙΑ ΕΝHΛΙΚΕΣ</div>
@@ -37,8 +85,10 @@ import Layout from '../layouts/Layout.astro';
         </div>
         <img class="path-68" src="/img/path-66@1x.png" alt="Path 68" />
         <div class="rectangle-96"></div>
+
+        <!-- Hero Slider -->
         <div class="component-1-1">
-          <div class="group-110">
+          <div class="group-110 active">
             <h1 class="x">ΚΑΝΕ ΤΟ ΠΡΩΙΝΟ ΤΟΥΣ...<br />ΤΗ ΣΤΙΓΜΗ ΤΗΣ ΗΜΕΡΑΣ!</h1>
             <p class="text-25 tiktoksans18pt-regular-normal-tundora-17px">
               Οι ήρωες που αγαπούν τα παιδιά, σε προϊόντα που αγαπούν οι γονείς.
@@ -59,8 +109,10 @@ import Layout from '../layouts/Layout.astro';
             </div>
           </div>
         </div>
-        <img class="path-67" src="/img/path-66@1x.png" alt="Path 67" />
-        <img class="path-69" src="/img/path-69@1x.png" alt="Path 69" />
+
+        <img class="path-67" src="/img/path-66@1x.png" alt="Path 67" id="sliderPrev" />
+        <img class="path-69" src="/img/path-69@1x.png" alt="Path 69" id="sliderNext" />
+
         <div class="group-116">
           <div class="navbar">
             <div class="rectangle-32"></div>
@@ -96,6 +148,7 @@ import Layout from '../layouts/Layout.astro';
           </div>
         </div>
       </div>
+
       <div class="group-117">
         <div class="navbar-1">
           <div class="rectangle-32"></div>
@@ -130,6 +183,7 @@ import Layout from '../layouts/Layout.astro';
           <div class="navbar-link-text-4 navbar-link-text-5">ΠΡΟΪΟΝΤΑ</div>
         </div>
       </div>
+
       <div class="text-6 tiktoksans18pt-bold-tundora-32px">ΠΑΙΔΙΚΑ ΠΡΟΪΟΝΤΑ</div>
       <p class="lorem-ipsum-dolor-si-2 lorem-ipsum-dolor-si-5 tiktoksans18pt-regular-normal-tundora-17px">
         Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet
@@ -325,4 +379,96 @@ import Layout from '../layouts/Layout.astro';
       </div>
     </div>
   </div>
+
+  <script>
+    // Mega Menu Functionality
+    const megaMenu = document.getElementById('megaMenu');
+    const megaMenuOverlay = document.querySelector('.mega-menu-overlay');
+    const hamburger = document.querySelector('.group-38');
+    const productsButton = document.querySelector('.navbar-link-text-4');
+    const tabs = document.querySelectorAll('.mega-menu-tab');
+
+    // Toggle mega menu
+    function toggleMegaMenu() {
+      megaMenu.classList.toggle('active');
+    }
+
+    hamburger.addEventListener('click', toggleMegaMenu);
+    productsButton.addEventListener('click', toggleMegaMenu);
+    megaMenuOverlay.addEventListener('click', () => {
+      megaMenu.classList.remove('active');
+    });
+
+    // Tab switching
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        // Remove active from all tabs
+        tabs.forEach(t => t.classList.remove('active'));
+        // Add active to clicked tab
+        tab.classList.add('active');
+
+        // Hide all content
+        const allContent = document.querySelectorAll('.mega-menu-content');
+        allContent.forEach(c => c.classList.remove('active'));
+
+        // Show selected content
+        const tabName = tab.getAttribute('data-tab');
+        const content = document.getElementById(tabName === 'adults' ? 'adultsContent' : 'kidsContent');
+        if (content) {
+          content.classList.add('active');
+        }
+      });
+    });
+
+    // Hero Slider Functionality
+    const slides = document.querySelectorAll('.group-110, .group-111');
+    const prevBtn = document.getElementById('sliderPrev');
+    const nextBtn = document.getElementById('sliderNext');
+    let currentSlide = 0;
+    let slideInterval;
+
+    function showSlide(n) {
+      slides.forEach(slide => slide.classList.remove('active'));
+      slides[n].classList.add('active');
+    }
+
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % slides.length;
+      showSlide(currentSlide);
+      resetAutoSlide();
+    }
+
+    function prevSlide() {
+      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+      showSlide(currentSlide);
+      resetAutoSlide();
+    }
+
+    function autoSlide() {
+      nextSlide();
+    }
+
+    function resetAutoSlide() {
+      clearInterval(slideInterval);
+      slideInterval = setInterval(autoSlide, 5000);
+    }
+
+    prevBtn.addEventListener('click', prevSlide);
+    nextBtn.addEventListener('click', nextSlide);
+
+    // Start auto-slide on page load
+    slideInterval = setInterval(autoSlide, 5000);
+
+    // Close mega menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!megaMenu.contains(e.target) &&
+          e.target !== hamburger &&
+          e.target !== productsButton &&
+          !hamburger.contains(e.target) &&
+          !productsButton.contains(e.target)) {
+        megaMenu.classList.remove('active');
+      }
+    });
+  </script>
+
 </Layout>

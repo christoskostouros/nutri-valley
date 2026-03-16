@@ -1,0 +1,208 @@
+/* Mega Menu Styles */
+.mega-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 8;
+  display: none;
+}
+
+.mega-menu.active {
+  display: flex;
+  flex-direction: column;
+}
+
+.mega-menu-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--tundora);
+  opacity: 0.3;
+  z-index: 0;
+}
+
+.mega-menu-panel {
+  position: absolute;
+  top: 138px;
+  left: 50px;
+  width: 1820px;
+  height: 450px;
+  background-color: var(--coconut);
+  border-radius: 42.02px;
+  display: flex;
+  z-index: 1;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.mega-menu-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 36px 0 0 40px;
+  width: auto;
+}
+
+.mega-menu-tab {
+  padding: 12px 30px;
+  height: 50px;
+  width: 350px;
+  background-color: transparent;
+  border-radius: 25px;
+  cursor: pointer;
+  color: var(--tundora);
+  font-family: var(--font-family-tiktoksans18pt-bold);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 1.80px;
+  line-height: 21.6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  white-space: nowrap;
+  transition: background-color 0.3s ease;
+  margin-bottom: 10px;
+}
+
+.mega-menu-tab.active {
+  background-color: #e8e8e8;
+}
+
+.mega-menu-tab img {
+  width: 7px;
+  height: 11px;
+  margin-left: 10px;
+}
+
+.mega-menu-content {
+  flex: 1;
+  display: none;
+  padding: 30px 50px;
+  overflow: hidden;
+}
+
+.mega-menu-content.active {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.mega-menu-grid {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.mega-menu-item {
+  flex-shrink: 0;
+}
+
+.mega-menu-logos {
+  position: absolute;
+  bottom: 30px;
+  left: 450px;
+  right: 50px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.mega-menu-logos img {
+  max-height: 65px;
+  object-fit: contain;
+}
+
+.mega-menu-text-list {
+  display: flex;
+  gap: 60px;
+  flex: 0 0 auto;
+}
+
+.mega-menu-text-col {
+  color: var(--tundora);
+  font-family: var(--font-family-tiktoksans18pt-regular);
+  font-size: 18px;
+  line-height: 35px;
+  letter-spacing: 0.09px;
+  white-space: pre-line;
+}
+
+.mega-menu-image {
+  flex-shrink: 0;
+}
+
+/* Hero Slider Styles */
+.component-1-1 {
+  position: relative;
+  overflow: hidden;
+}
+
+.group-110,
+.group-111 {
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  transition: opacity 0.6s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0 50px;
+}
+
+.group-110.active,
+.group-111.active {
+  opacity: 1;
+  position: relative;
+}
+
+.hero-controls {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  display: flex;
+  gap: 15px;
+}
+
+.hero-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.hero-dot.active {
+  background-color: var(--tundora);
+}
+
+/* Interaction States */
+.navbar-link-text-4 {
+  cursor: pointer;
+  user-select: none;
+  transition: opacity 0.2s ease;
+}
+
+.navbar-link-text-4:hover {
+  opacity: 0.7;
+}
+
+.group-38 {
+  cursor: pointer;
+  user-select: none;
+  transition: opacity 0.2s ease;
+}
+
+.group-38:hover {
+  opacity: 0.7;
+}

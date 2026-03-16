@@ -1,1 +1,8 @@
-Fix: use CSS zoom instead of transform scale for proper centering and layout flow  
+feat: add mega menu, hero slider, and complete interactivity
+
+- Added mega menu with adults (thumbnails) and kids (text list) tabs
+- Added hero slider with auto-advance and arrow controls
+- Copied all menu Anima export images and CSS
+- Added custom.css for interactive elements
+
+Co-Authored-By: Claude Opus 4.6 <noreply@anthropic.com>
