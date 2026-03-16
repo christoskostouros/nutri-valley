@@ -1,1 +1,1 @@
-Fix layout: use JS viewport scaling for 1920px design, restore fixed pixel widths  
+Fix: use CSS zoom instead of transform scale for proper centering and layout flow  

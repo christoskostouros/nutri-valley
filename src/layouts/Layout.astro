@@ -13,29 +13,13 @@ const {
 <html lang="el">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=1920, maximum-scale=1.0" />
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
     <title>{title}</title>
   </head>
   <body>
     <slot />
-    <script>
-      // Use CSS zoom to scale the 1920px design proportionally.
-      // Unlike transform:scale, zoom properly affects layout flow,
-      // so the page centers correctly and scrolling works naturally.
-      function applyZoom() {
-        const vw = window.innerWidth;
-        if (vw < 1920) {
-          document.body.style.zoom = String(vw / 1920);
-        } else {
-          document.body.style.zoom = '1';
-        }
-      }
-      applyZoom();
-      window.addEventListener('resize', applyZoom);
-      window.addEventListener('load', applyZoom);
-    </script>
   </body>
 </html>
 
