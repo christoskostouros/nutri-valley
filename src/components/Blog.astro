@@ -7,13 +7,15 @@ const posts = [
   {
     id: 1,
     title: 'ΓΙΑΤΙ ΝΑ ΕΠΙΛΕΞΕΤΕ ΤΟ ΦΙΛΕΤΟ ΚΟΤΟΠΟΥΛΟ ΤΗΣ NUTRI VALLEY',
-    image: '/assets/images/asset-5b7686.webp',
+    excerpt: 'Ανακαλύψτε γιατί το φιλέτο κοτόπουλου Nutri Valley είναι η ιδανική επιλογή για υγιεινή και νόστιμη διατροφή.',
+    image: '/assets/images/blog-post-01.webp',
     href: '/blog/fileto-kotopoulo',
   },
   {
     id: 2,
     title: 'ΒΙΩΣΙΜΟΤΗΤΑ ΤΗΣ NUTRI VALLEY',
-    image: '/assets/images/asset-58725d.webp',
+    excerpt: 'Η Nutri Valley δεσμεύεται για ένα βιώσιμο μέλλον. Μάθετε για τις πρωτοβουλίες μας για το περιβάλλον και την κοινωνία.',
+    image: '/assets/images/blog-post-02.webp',
     href: '/blog/biwsimothta',
   },
 ];
@@ -34,6 +36,7 @@ const posts = [
             <h3 class="blog-card__title">
               <a href={post.href}>{post.title}</a>
             </h3>
+            {post.excerpt && <p class="blog-card__excerpt">{post.excerpt}</p>}
           </div>
         </article>
       ))}

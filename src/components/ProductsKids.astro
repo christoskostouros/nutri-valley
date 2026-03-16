@@ -7,26 +7,26 @@
 const brands = [
   {
     id: 'brand-1',
-    name: 'Παιδικά Προϊόντα 1',
+    name: 'Peppa Pig',
     href: '/proionta/paidia',
     image: '/assets/images/kids-banner-01.webp',
-    bgColor: '#C4B2A3',
+    bgColor: '#F2C8D0',   /* Peppa Pig pink */
     ctaText: 'ΟΛΑ ΤΑ ΠΡΟΙΟΝΤΑ',
   },
   {
     id: 'brand-2',
-    name: 'Παιδικά Προϊόντα 2',
+    name: 'PJ Masks',
     href: '/proionta/paidia',
     image: '/assets/images/kids-banner-02.webp',
-    bgColor: '#859E66',
+    bgColor: '#5A9160',   /* PJ Masks green */
     ctaText: 'ΟΛΑ ΤΑ ΠΡΟΙΟΝΤΑ',
   },
   {
     id: 'brand-3',
-    name: 'Παιδικά Προϊόντα 3',
+    name: 'Minions',
     href: '/proionta/paidia',
     image: '/assets/images/kids-banner-03.webp',
-    bgColor: '#E8DDD0',
+    bgColor: '#F2CB55',   /* Minions yellow */
     ctaText: 'ΟΛΑ ΤΑ ΠΡΟΙΟΝΤΑ',
   },
 ];
@@ -37,17 +37,18 @@ const brands = [
 
     <div class="products-kids__header">
       <h2 id="kids-title" class="heading-section">ΠΑΙΔΙΚΑ ΠΡΟΪΟΝΤΑ</h2>
+      <p class="section-subtitle">Αγαπημένοι ήρωες, υγιεινές γεύσεις! Προϊόντα σχεδιασμένα ειδικά για παιδιά, με τους αγαπημένους τους χαρακτήρες και πλούσια διατροφική αξία.</p>
     </div>
 
     <div class="kids-cards">
       {brands.map((brand) => (
         <div class="kids-card" style={`--kids-bg: ${brand.bgColor}`}>
-          <!-- Full banner image -->
+          <!-- Full-bleed banner image -->
           <div class="kids-card__img-wrap">
             <img src={brand.image} alt={`${brand.name} προϊόντα`} class="kids-card__img" loading="lazy" />
           </div>
 
-          <!-- CTA button -->
+          <!-- CTA button overlaid at bottom -->
           <div class="kids-card__footer">
             <a href={brand.href} class="btn btn-white-pill kids-card__btn">{brand.ctaText}</a>
           </div>
@@ -73,6 +74,16 @@ const brands = [
   margin-bottom: 60px;
 }
 
+.section-subtitle {
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--dark);
+  opacity: 0.75;
+  max-width: 700px;
+  margin: 20px auto 0;
+}
+
 .kids-cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -89,47 +100,36 @@ const brands = [
   align-items: center;
   min-height: 520px;
   position: relative;
-  padding: 40px 32px 0;
   transition: transform 0.3s ease;
 }
 .kids-card:hover { transform: translateY(-6px); }
 
-.kids-card__logo-wrap {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 70px;
-  margin-bottom: 20px;
-}
-.kids-card__logo {
-  max-height: 60px;
-  max-width: 200px;
-  object-fit: contain;
-}
-
+/* Full-bleed image fills the entire card */
 .kids-card__img-wrap {
-  flex: 1;
-  width: 100%;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  min-height: 280px;
-  overflow: visible;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  overflow: hidden;
 }
 .kids-card__img {
-  max-width: 320px;
   width: 100%;
-  height: auto;
-  object-fit: contain;
-  filter: drop-shadow(0 12px 24px rgba(0,0,0,0.15));
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
 }
 
+/* Button at bottom on top of image */
 .kids-card__footer {
+  position: relative;
+  z-index: 2;
   width: 100%;
-  padding: 28px 0 32px;
+  margin-top: auto;
+  padding: 28px 24px 32px;
   display: flex;
   justify-content: center;
-  background: inherit;
+  /* push to bottom */
+  align-self: flex-end;
+  min-height: 92px;
 }
 
 .kids-cards__arrow {

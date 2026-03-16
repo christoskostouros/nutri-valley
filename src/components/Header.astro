@@ -21,7 +21,7 @@
 
     <!-- CENTER: Logo -->
     <a href="/" class="header__logo" aria-label="Nutri Valley - Αρχική">
-      <img src="/assets/images/logo-icon.webp" alt="Nutri Valley" width="200" height="58" />
+      <img src="/assets/images/nutri-valley-logo.svg" alt="Nutri Valley" width="216" height="45" />
     </a>
 
     <!-- NAV LINKS inside pill container -->
@@ -57,35 +57,81 @@
   </div>
 </header>
 
-<!-- MEGA MENU (Menu-Desktop-1 / Menu-Desktop-2) — hidden by default -->
+<!-- MEGA MENU (from XD menu-desktop-1 / menu-desktop-2) — hidden by default -->
 <div class="mega-menu" id="mega-menu" aria-hidden="true">
-  <div class="mega-menu__inner">
-    <!-- Product categories row -->
-    <div class="mega-menu__grid">
-      <a href="/proionta/konserves" class="mega-menu__item">
-        <div class="mega-menu__img-wrap">
-          <img src="/assets/images/menu/konserves-thumb.jpg" alt="Κονσέρβες" />
-        </div>
-        <span>PREMIUM ΚΟΝΣΕΡΒΕΣ</span>
-      </a>
-      <a href="/proionta/mpares" class="mega-menu__item">
-        <div class="mega-menu__img-wrap">
-          <img src="/assets/images/menu/mpares-thumb.jpg" alt="Μπάρες Πρωτεΐνης" />
-        </div>
-        <span>ΜΠΑΡΕΣ ΠΡΩΤΕΪΝΗΣ</span>
-      </a>
-      <a href="/proionta/gkofretes" class="mega-menu__item">
-        <div class="mega-menu__img-wrap">
-          <img src="/assets/images/menu/gkofretes-thumb.jpg" alt="Γκοφρέτες" />
-        </div>
-        <span>ΓΚΟΦΡΕΤΕΣ</span>
-      </a>
-      <a href="/proionta/taxini" class="mega-menu__item">
-        <div class="mega-menu__img-wrap">
-          <img src="/assets/images/menu/taxini-thumb.jpg" alt="Ταχίνι" />
-        </div>
-        <span>ΤΑΧΙΝΙ</span>
-      </a>
+  <div class="mega-menu__overlay"></div>
+  <div class="mega-menu__panel">
+
+    <!-- LEFT: tagline + nav links -->
+    <div class="mega-menu__left">
+      <p class="mega-menu__tagline">ΑΠΟΛΑΥΣΗ &amp; ΙΣΟΡΡΟΠΙΑ</p>
+      <p class="mega-menu__subtitle">Θρεπτικές επιλογές σχεδιασμένες για τον σύγχρονο τρόπο ζωής.</p>
+      <a href="/proionta" class="btn btn-dark mega-menu__all-btn">ΟΛΑ ΤΑ ΠΡΟΙΟΝΤΑ</a>
+
+      <div class="mega-menu__categories">
+        <button class="mega-menu__cat mega-menu__cat--active" data-cat="adults">
+          ΠΡΟΪΟΝΤΑ ΓΙΑ ΕΝΗΛΙΚΕΣ
+          <svg width="7" height="11" viewBox="0 0 7 11" fill="none"><path d="M1 1L6 5.5L1 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="mega-menu__cat" data-cat="kids">
+          ΠΑΙΔΙΚΑ ΠΡΟΪΟΝΤΑ
+          <svg width="7" height="11" viewBox="0 0 7 11" fill="none"><path d="M1 1L6 5.5L1 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- RIGHT: product thumbnails -->
+    <div class="mega-menu__right">
+
+      <!-- ADULTS products (default visible) -->
+      <div class="mega-menu__products mega-menu__products--adults is-active" id="menu-adults">
+        <a href="/proionta/konserves" class="mega-menu__product-card">
+          <div class="mega-menu__product-img">
+            <img src="/assets/images/menu/menu-adults-01.webp" alt="Premium Κονσέρβες" loading="lazy" />
+          </div>
+          <div class="mega-menu__product-logo">
+            <img src="/assets/images/menu/menu-logo-01.webp" alt="" loading="lazy" />
+          </div>
+        </a>
+        <a href="/proionta/mpares" class="mega-menu__product-card">
+          <div class="mega-menu__product-img">
+            <img src="/assets/images/menu/menu-adults-02.webp" alt="Μπάρες Πρωτεΐνης" loading="lazy" />
+          </div>
+          <div class="mega-menu__product-logo">
+            <img src="/assets/images/menu/menu-logo-02.webp" alt="" loading="lazy" />
+          </div>
+        </a>
+        <a href="/proionta/gkofretes" class="mega-menu__product-card">
+          <div class="mega-menu__product-img">
+            <img src="/assets/images/menu/menu-adults-03.webp" alt="Γκοφρέτες" loading="lazy" />
+          </div>
+          <div class="mega-menu__product-logo">
+            <img src="/assets/images/menu/menu-logo-03.webp" alt="" loading="lazy" />
+          </div>
+        </a>
+        <a href="/proionta/taxini" class="mega-menu__product-card">
+          <div class="mega-menu__product-img">
+            <img src="/assets/images/menu/menu-adults-04.webp" alt="Ταχίνι" loading="lazy" />
+          </div>
+          <div class="mega-menu__product-logo">
+            <img src="/assets/images/menu/menu-logo-04.webp" alt="" loading="lazy" />
+          </div>
+        </a>
+      </div>
+
+      <!-- KIDS products (hidden, shown on hover) -->
+      <div class="mega-menu__products mega-menu__products--kids" id="menu-kids">
+        <a href="/proionta/granola" class="mega-menu__product-card mega-menu__product-card--text">
+          <span>Γκρανόλα</span>
+        </a>
+        <a href="/proionta/vromh" class="mega-menu__product-card mega-menu__product-card--text">
+          <span>Νιφάδες Βρώμης</span>
+        </a>
+        <a href="/proionta/kalamboki" class="mega-menu__product-card mega-menu__product-card--text">
+          <span>Νιφάδες Καλαμποκιού</span>
+        </a>
+      </div>
+
     </div>
   </div>
 </div>
@@ -129,7 +175,7 @@
   align-items: center;
 }
 .header__logo img {
-  height: 58px;
+  height: 45px;
   width: auto;
 }
 
@@ -180,81 +226,240 @@
 /* ===== MEGA MENU ===== */
 .mega-menu {
   position: fixed;
-  top: 170px;
+  top: 0;
   left: 0;
   width: 100%;
-  background: var(--white);
-  border-top: 2px solid var(--light);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+  height: 100%;
   z-index: 99;
-  transform: translateY(-10px);
-  opacity: 0;
   pointer-events: none;
-  transition: opacity 0.25s ease, transform 0.25s ease;
+  opacity: 0;
+  transition: opacity 0.25s ease;
 }
 .mega-menu.is-open {
   opacity: 1;
-  transform: translateY(0);
   pointer-events: auto;
 }
 
-.mega-menu__inner {
-  max-width: 1820px;
-  margin: 0 auto;
-  padding: 40px 50px;
+/* Dark overlay behind panel */
+.mega-menu__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.3);
 }
 
-.mega-menu__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 24px;
+/* White rounded panel */
+.mega-menu__panel {
+  position: absolute;
+  top: 50px;   /* matches header top padding */
+  left: 50px;
+  right: 50px;
+  margin-top: 120px;  /* below header row */
+  background: var(--white);
+  border-radius: 42px;
+  display: flex;
+  align-items: stretch;
+  min-height: 450px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+  transform: translateY(-10px);
+  transition: transform 0.25s ease;
+}
+.mega-menu.is-open .mega-menu__panel {
+  transform: translateY(0);
 }
 
-.mega-menu__item {
+/* LEFT side */
+.mega-menu__left {
+  flex: 0 0 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 50px 48px 50px 60px;
+  border-right: 2px solid #e8e8e8;
+}
+
+.mega-menu__tagline {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  line-height: 1.3;
+  color: var(--dark);
+  text-transform: uppercase;
+}
+
+.mega-menu__subtitle {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--dark);
+  opacity: 0.7;
+  max-width: 300px;
+}
+
+.mega-menu__all-btn {
+  align-self: flex-start;
+  margin-top: 4px;
+}
+
+.mega-menu__categories {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.mega-menu__cat {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 20px;
+  border-radius: 25px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+  color: var(--dark);
+  text-transform: uppercase;
+  text-align: left;
+  width: 100%;
+  transition: background 0.2s, color 0.2s;
+}
+.mega-menu__cat:hover {
+  background: #f0f0f0;
+}
+.mega-menu__cat--active {
+  background: #e8e8e8;
+  color: var(--dark);
+}
+
+/* RIGHT side: product thumbnails */
+.mega-menu__right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 30px 40px;
+  overflow: hidden;
+}
+
+.mega-menu__products {
+  display: none;
+  gap: 20px;
+  width: 100%;
+}
+.mega-menu__products.is-active {
+  display: flex;
+}
+
+/* Thumbnail card */
+.mega-menu__product-card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
-  text-align: center;
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  color: var(--dark);
-  text-transform: uppercase;
-  transition: color 0.2s;
+  gap: 12px;
+  flex: 1;
+  transition: transform 0.2s;
 }
-.mega-menu__item:hover { color: var(--green); }
+.mega-menu__product-card:hover {
+  transform: translateY(-4px);
+}
 
-.mega-menu__img-wrap {
-  width: 160px;
-  height: 160px;
-  border-radius: 50%;
+.mega-menu__product-img {
+  width: 100%;
+  aspect-ratio: 4/5;
+  border-radius: 16px;
   overflow: hidden;
   background: var(--light);
+  max-height: 310px;
 }
-.mega-menu__img-wrap img {
+.mega-menu__product-img img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
+}
+
+.mega-menu__product-logo {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mega-menu__product-logo img {
+  max-height: 50px;
+  max-width: 130px;
+  object-fit: contain;
+}
+
+/* Kids products as text list */
+.mega-menu__product-card--text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+  flex: 0 0 auto;
+  padding: 20px 24px;
+  border-radius: 16px;
+  background: var(--light);
+  min-width: 200px;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--dark);
+  transition: background 0.2s, color 0.2s;
+}
+.mega-menu__product-card--text:hover {
+  background: var(--green);
+  color: var(--white);
+  transform: translateY(-4px);
 }
 </style>
 
 <script>
 /* Toggle mega menu on ΠΡΟΪΟΝΤΑ button click */
-const btn = document.querySelector('.header__products-btn');
+const btn = document.querySelector('.header__products-btn') as HTMLButtonElement;
 const menu = document.getElementById('mega-menu');
+const overlay = menu?.querySelector('.mega-menu__overlay');
+
+function openMenu() {
+  menu?.classList.add('is-open');
+  menu?.setAttribute('aria-hidden', 'false');
+}
+function closeMenu() {
+  menu?.classList.remove('is-open');
+  menu?.setAttribute('aria-hidden', 'true');
+}
 
 btn?.addEventListener('click', () => {
-  const isOpen = menu?.classList.contains('is-open');
-  menu?.classList.toggle('is-open', !isOpen);
-  menu?.setAttribute('aria-hidden', isOpen ? 'true' : 'false');
+  if (menu?.classList.contains('is-open')) {
+    closeMenu();
+  } else {
+    openMenu();
+  }
 });
 
-/* Close on outside click */
-document.addEventListener('click', (e) => {
-  if (!btn?.contains(e.target as Node) && !menu?.contains(e.target as Node)) {
-    menu?.classList.remove('is-open');
-    menu?.setAttribute('aria-hidden', 'true');
-  }
+/* Close on overlay click */
+overlay?.addEventListener('click', closeMenu);
+
+/* Close on Escape */
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeMenu();
+});
+
+/* Category tabs */
+const catBtns = document.querySelectorAll('.mega-menu__cat');
+catBtns.forEach(catBtn => {
+  catBtn.addEventListener('click', () => {
+    const cat = (catBtn as HTMLElement).dataset.cat;
+    catBtns.forEach(b => b.classList.remove('mega-menu__cat--active'));
+    catBtn.classList.add('mega-menu__cat--active');
+
+    document.querySelectorAll('.mega-menu__products').forEach(panel => {
+      panel.classList.remove('is-active');
+    });
+    const target = document.getElementById(`menu-${cat}`);
+    target?.classList.add('is-active');
+  });
 });
 </script>
